@@ -1,0 +1,59 @@
+<body>
+  <main>
+    <div class="box">
+      <div class="inner-box">
+        <div class="forms-wrap">
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm)" class="sign-in-form">
+            <div class="logo">
+              <img src="assets/logo-crisol.jpeg" alt="Crisol" />
+              <h4>Crisol</h4>
+            </div>
+
+            <div class="heading">
+              <h2>Bienvenido</h2>
+              <h6>¿No estás registrado?</h6>
+              <a href="crisol/cliente/cuenta/registrarse" class="toggle">Regístrate</a>
+            </div>
+
+              <div class="input-wrap">
+                <input type="email" minlength="4" maxlength="30" class="input-field" formControlName="email" placeholder="Email"
+                 />
+                 <div *ngIf="email?.touched && password?.invalid" class="error-message">
+                  <p *ngIf="email?.errors?.['required']">Campo requerido*</p>
+                  <p *ngIf="email?.errors?.['email']">El email ingresado no es válido</p>
+                </div>
+              </div>
+
+              <div class="input-wrap">
+                <input type="password" minlength="8" maxlength="10" class="input-field" formControlName="password"
+                  placeholder="Contraseña" />
+                  <div *ngIf="password?.touched && password?.invalid" class="error-message">
+                    <p *ngIf="password?.errors?.['required']">Campo requerido*</p>
+                    <p *ngIf="password?.errors?.['minlength']">Ingrese al menos 8 dígitos</p>
+                    <p *ngIf="password?.errors?.['maxlength']">Ingrese máximo 10 dígitos</p>
+                  </div>
+              </div>
+
+              <input type="submit" value="Ingresar" class="sign-btn" />
+
+              <!--
+                <p class="text">
+                  <a href="#">¿Olvidaste tu contraseña?</a>
+                </p>-->
+                <div class="alert alert-danger" *ngIf="errorStatus">
+                  <p>{{ errorMsj }}</p>
+                </div>
+
+          </form>
+        </div>
+
+        <div class="carousel">
+          <div class="images-wrapper">
+            <img src="assets/crisol.png" class="image img-1 show" alt="" />
+          </div>
+
+          </div>
+        </div>
+      </div>
+  </main>
+</body>

@@ -1,0 +1,83 @@
+<body>
+  <main>
+    <div class="box">
+      <div class="inner-box">
+        <div class="forms-wrap">
+          <form (ngSubmit)="crearCliente()" autocomplete="off" class="sign-in-form" [formGroup]="registroForm">
+            <div class="logo">
+              <img src="assets/crisol.png" alt="Crisol" />
+              <h4>Crisol</h4>
+            </div>
+
+            <div class="heading">
+              <h2>Registrarse</h2>
+              <h6>¿Ya tienes una cuenta?</h6>
+              <a href="crisol/cliente/cuenta/login" class="toggle">Inicia sesión</a>
+            </div>
+
+            <div class="actual-form">
+              <div class="input-wrap">
+                  <input type="text"  formControlName="dni" class="input-field" placeholder="DNI"
+                    autocomplete="off" id="dni" maxlength="8"  (keydown)="validarNumerico($event)"/>
+                  <div *ngIf="dni?.touched && dni?.invalid" class="error-message">
+                    <p *ngIf="dni?.errors?.['required']">Campo requerido*</p>
+                    <p *ngIf="dni?.errors?.['minlength']">Debe ingresar 8 dígitos.</p>
+                    <p *ngIf="dni?.errors?.['maxlength']">El DNI solo tiene 8 dígitos.</p>
+                  </div>
+                </div>
+
+              <div class="input-wrap">
+                <input type="text" formControlName="nombres" class="input-field" placeholder="Nombres"
+                  autocomplete="off"/>
+                <div *ngIf="nombres?.touched && nombres?.invalid" class="error-message">
+                  <p *ngIf="nombres?.errors?.['required']">Campo requerido*</p>
+                  <p *ngIf="nombres?.errors?.['minlength']">Ingrese al menos 3 caracteres.</p>
+                </div>
+              </div>
+
+              <div class="input-wrap">
+                <input type="text" formControlName="apellidos" class="input-field"
+                  placeholder="Apellidos" autocomplete="off" />
+                <div *ngIf="apellidos?.touched && apellidos?.invalid" class="error-message">
+                  <p *ngIf="apellidos?.errors?.['required']">Campo requerido*</p>
+                  <p *ngIf="apellidos?.errors?.['minlength']">Ingrese al menos 3 caracteres.</p>
+                </div>
+              </div>
+
+              <div class="input-wrap">
+                <input type="email" formControlName="email" class="input-field"  placeholder="Email"
+                  autocomplete="off"  />
+                <div *ngIf="email?.touched && email?.invalid" class="error-message">
+                  <p *ngIf="email?.errors?.['required']">Campo requerido*</p>
+                  <p *ngIf="email?.errors?.['email']">El email ingresado no es válido.</p>
+                </div>
+              </div>
+
+              <div class="input-wrap">
+                <input type="password" formControlName="password" class="input-field"
+                  placeholder="Contraseña" autocomplete="off" />
+                <div *ngIf="password?.touched && password?.invalid" class="error-message">
+                  <p *ngIf="password?.errors?.['required']">Campo requerido*</p>
+                  <p *ngIf="password?.errors?.['minlength']">Ingrese al menos 8 caracteres.</p>
+                </div>
+              </div>
+
+              
+              <input type="submit" value="Registrarme" class="sign-btn" />
+              
+
+            </div>
+
+          </form>
+        </div>
+        <div class="carousel">
+          <div class="images-wrapper">
+            <img src="assets/crisol.png" class="image img-1 show" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+

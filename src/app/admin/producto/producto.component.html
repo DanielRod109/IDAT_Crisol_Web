@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Libros</h2>
+        <button class="btn btn-primary" [routerLink]="['/admin/principal/crud-producto']">
+            Registrar Libro
+          </button>
+    <div class="card-body">
+        <table class="table table-striped mt-4">
+            <thead class="table-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Peso</th>
+                    <th>Editorial</th>
+                    <th>Precio</th>
+                    <th>Publicación</th>
+                    <th>Autor</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of productos">
+                    <td>{{a.id_libro}}</td>
+                    <td>{{a.nombre}}</td>
+                    <td>{{a.peso}}</td>
+                    <td>{{a.editorial}}</td>
+                    <td>S/.{{a.precio}}</td>
+                    <td>{{a.aedicion}}</td>
+                    <td>{{a.autor}}</td>
+                    <td>
+                        <button [routerLink]="['/admin/principal/crud-producto',a.id_libro]" class="btn btn-warning m-lg-2">Editar</button>
+                        <!--- <button class="btn btn-danger">Eliminar</button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> 

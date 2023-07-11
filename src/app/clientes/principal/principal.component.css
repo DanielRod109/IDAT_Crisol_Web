@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100vw;
+    position: relative;
+    background-color: white;
+}
+.container-title {
+    margin-bottom: 1.5rem;
+}
+.container-products app-productos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
