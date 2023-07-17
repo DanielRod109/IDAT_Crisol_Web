@@ -21,6 +21,10 @@ import { RegistrarComponent } from './admin/producto/registrar/registrar.compone
 import { EditarComponent } from './admin/producto/editar/editar.component';
 import { ProductoRegistrarEditarComponent } from './admin/producto/producto-registrar-editar/producto-registrar-editar.component';
 import { PrincipalAdminComponent } from './admin/principal-admin/principal-admin.component';
+import { UsuarioComponent } from './admin/usuarios/usuario/usuario.component';
+import { FormUsuarioComponent } from './admin/usuarios/form-usuario/form-usuario.component';
+import { LoginUsuarioComponent } from './admin/usuarios/login-usuario/login-usuario.component';
+import { AuthguardGuard } from './seguridad/authguard.guard';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,9 @@ import { PrincipalAdminComponent } from './admin/principal-admin/principal-admin
     EditarComponent,
     ProductoRegistrarEditarComponent,
     PrincipalAdminComponent
+   // UsuarioComponent,
+    //FormUsuarioComponent,
+    //LoginUsuarioComponent
    // CategoriaComponent,
    // LoginComponent,
    // RegistroComponent,
@@ -48,7 +55,7 @@ import { PrincipalAdminComponent } from './admin/principal-admin/principal-admin
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

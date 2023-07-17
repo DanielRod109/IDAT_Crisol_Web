@@ -104,7 +104,8 @@
         <div class="text-center">
             <button class="btn btn-success" role="button"
             (click)='createLibro()' *ngIf="!producto.id_libro else elseBlock">Crear</button>
-
+            <span>&nbsp;</span>
+            <button role="button" [routerLink]="['/admin/principal/productos']" class="btn btn-secondary">Cancelar</button>
             <ng-template #elseBlock>
                 <button class="btn btn-success" role="button"
                 (click)='updateLibro()'>Editar</button>

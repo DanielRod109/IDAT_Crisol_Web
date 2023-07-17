@@ -9,22 +9,50 @@ import { RegistrarComponent } from './admin/producto/registrar/registrar.compone
 import { EditarComponent } from './admin/producto/editar/editar.component';
 import { PrincipalAdminComponent } from './admin/principal-admin/principal-admin.component';
 import { ProductoRegistrarEditarComponent } from './admin/producto/producto-registrar-editar/producto-registrar-editar.component';
-
+import { UsuarioComponent } from './admin/usuarios/usuario/usuario.component';
+import { FormUsuarioComponent } from './admin/usuarios/form-usuario/form-usuario.component';
+import { LoginUsuarioComponent } from './admin/usuarios/login-usuario/login-usuario.component';
+import { AuthguardGuard } from './seguridad/authguard.guard';
+//import { LoginComponent } from './admin';
 const routes: Routes = [
-  { path: '' , redirectTo:'crisol', pathMatch:'full'},
-  { path:'crisol', component:PrincipalComponent},
-  { path:'crisol/cliente/cuenta/login', component:LoginComponent},
-  { path: 'crisol/cliente/cuenta/registrarse', component:RegistroComponent},
+  { 
+    path: '' , redirectTo:'crisol',
+    pathMatch:'full'
+  },
+  { path:'crisol', 
+    component:PrincipalComponent
+  },
+  { 
+    path:'crisol/cliente/cuenta/login', 
+    component:LoginComponent
+  },
+  { 
+    path: 'crisol/cliente/cuenta/registrarse', 
+    component:RegistroComponent
+  },
+
+  //login admin
+  { 
+    path:'admin/login', 
+    component:LoginUsuarioComponent
+  },
 
   //ruta para el menú backoffice
-  { path:'admin/principal', component:PrincipalAdminComponent,
+  { 
+    path:'admin/principal', 
+    component:PrincipalAdminComponent,
+    canActivate: [AuthguardGuard], // indica que el usuario debe iniciar sesion
   children:[
     //sub rutas para utilizar "<router-outlet>" dentro del menú principal
     { path:'productos', component:ProductoComponent},
     //{ path:'registrar-producto', component:RegistrarComponent},
     //{ path:'editar-producto/:id', component:EditarComponent},
     { path:'crud-producto', component:ProductoRegistrarEditarComponent},
-    { path:'crud-producto/:id', component:ProductoRegistrarEditarComponent}
+    { path:'crud-producto/:id', component:ProductoRegistrarEditarComponent},
+    
+    { path:'usuarios', component:UsuarioComponent},
+    { path:'crud-usuarios', component:FormUsuarioComponent},
+    { path:'crud-usuarios/:id', component:FormUsuarioComponent}
   ]
 },
 ];
@@ -35,4 +63,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [PrincipalComponent,CategoriaComponent,LoginComponent,RegistroComponent, ]
+export const routingComponents = [PrincipalComponent,CategoriaComponent,LoginComponent,
+                        RegistroComponent, UsuarioComponent,FormUsuarioComponent,LoginUsuarioComponent]

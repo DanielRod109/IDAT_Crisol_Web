@@ -11,6 +11,10 @@ export class ProductosService {
   baseUrl: string = 'http://localhost:8080/crisol/libro/';
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'})
 
+  buscarNombre: string ='http://localhost:8080/crisol/libro/buscarNombreAutorEditorial'
+
+
+
   constructor(private httpClient: HttpClient) { }
 
   obtenerProductos(): Observable<Productos[]> {
@@ -31,4 +35,11 @@ export class ProductosService {
   obtenerProducto(id_libro:number):Observable<Productos>{
     return this.httpClient.get<Productos>(`${this.baseUrl}buscar/${id_libro}`);
   }
+  
+   //se agrego este metodo
+   buscarPorNombreAutorEditorial(nombre: string): Observable<Productos[]> {
+    const url = `${this.buscarNombre}/${nombre}`;
+    return this.httpClient.get<Productos[]>(url);
+  }
+
 }

@@ -10,7 +10,9 @@ import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
 export class HeaderComponent implements OnInit {
 
   viewCart: boolean = false;
-
+  clienteNombre: string | null = null;
+  showMenu: boolean = false;
+  showSubMenu: boolean = false;
   myCart$ = this.tiendaService.myCart$;
 
 
@@ -19,6 +21,16 @@ export class HeaderComponent implements OnInit {
   //Login Clientes
   onLogin() {
     this.clienteService.login();
+  }
+
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
+  }
+
+  toggleSubMenu() {
+    if (this.showMenu) {
+      this.showSubMenu = !this.showSubMenu;
+    }
   }
 
   onLogout() {
@@ -30,7 +42,11 @@ export class HeaderComponent implements OnInit {
   }
   
   //----
-  ngOnInit():void{}
+  ngOnInit(): void {
+    if (this.clienteService.isAuthenticated()) {
+      this.clienteNombre = this.clienteService.getClienteNombre();
+    }
+  }
   //Carrito
   onToggleCart() {
     this.viewCart = !this.viewCart

@@ -1,34 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ClienteServiceService } from 'src/app/servicios/api-cliente/cliente-service.service';
-import { LoginInterface } from 'src/app/clases/LoginInterface';
-import { RespuestaInterface } from 'src/app/clases/RespuestaLoginInterface';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginInterface } from 'src/app/clases/LoginInterface';
+import { UsuarioService } from 'src/app/servicios/api-usuarios/usuario.service';
+import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-login-usuario',
+  templateUrl: './login-usuario.component.html',
+  styleUrls: ['./login-usuario.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginUsuarioComponent implements OnInit  {
   loginForm! : FormGroup;
 
   errorStatus: boolean = false;
   errorMsj: any = "";
 
-  constructor(private api: ClienteServiceService, private router: Router) { }
+  constructor(private api:UsuarioService , private router: Router){}
 
   ngOnInit(): void {
-    if (this.api.isAuthenticated()) {
-      this.router.navigate(['crisol']);
+      if (this.api.isAuthenticated()) {
+          this.router.navigate(['admin/principal']);
+      }
+      this.loginForm= new FormGroup({
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', Validators.required)
+      });
     }
-
-    this.loginForm= new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required)
-    });
-
-  }
 
   get email() {
     return this.loginForm.get('email');
@@ -55,14 +53,19 @@ export class LoginComponent implements OnInit {
 
     this.validarLogin();
 
-    this.api.loginCorreo(loginData).subscribe(
+    this.api.autenticar(loginData).subscribe(
       data => {
         console.log(data); // Verificar la respuesta del servidor
         if (data.message == "Inicio de sesión exitoso") {
           this.api.login();
           setTimeout(() => {
-            this.router.navigate(['crisol']);
-          }, 2000);
+            this.router.navigate(['admin/principal']);
+            swal.fire(
+              '¡Bienvenido!',
+              'Autenticado correctamente',
+              'success'
+            )
+          }, 1500);
         }
       },
       error => {
@@ -72,12 +75,18 @@ export class LoginComponent implements OnInit {
           this.errorMsj = error.error.message;
         }
         if (error.error.message == "El email ingresado no está asociado a una cuenta.") {
-          this.errorStatus = true;
-          this.errorMsj = "Email o contraseña incorrecta";
+          swal.fire(
+            'Error',
+            'Email o contraseña incorrecta',
+            'error'
+          )
         }
         if (error.error.message == "La contraseña ingresada es incorrecta.") {
-          this.errorStatus = true;
-          this.errorMsj = "Email o contraseña incorrecta";
+          swal.fire(
+            'Error',
+            'Email o contraseña incorrecta',
+            'error'
+          )
         }
         console.log(error.error.message); // Verificar el mensaje de error en la consola
       }
@@ -86,6 +95,6 @@ export class LoginComponent implements OnInit {
 
   onLogout() {
     this.api.logout();
-    this.router.navigate(['login']);
   }
+
 }

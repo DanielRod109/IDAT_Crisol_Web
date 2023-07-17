@@ -29,8 +29,6 @@
                   placeholder="Contraseña" />
                   <div *ngIf="password?.touched && password?.invalid" class="error-message">
                     <p *ngIf="password?.errors?.['required']">Campo requerido*</p>
-                    <p *ngIf="password?.errors?.['minlength']">Ingrese al menos 8 dígitos</p>
-                    <p *ngIf="password?.errors?.['maxlength']">Ingrese máximo 10 dígitos</p>
                   </div>
               </div>
 
