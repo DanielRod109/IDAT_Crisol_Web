@@ -10,7 +10,7 @@ export class ProductosService {
 
   baseUrl: string = 'http://localhost:8080/crisol/libro/';
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'})
-
+//se agregó buscarNombre
   buscarNombre: string ='http://localhost:8080/crisol/libro/buscarNombreAutorEditorial'
 
 

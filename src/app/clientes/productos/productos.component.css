@@ -1,3 +1,26 @@
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1; 
+  margin-right: 10px; 
+
+}
+
+.search-input input {
+  width: 100%;
+  
+}
+
+
+.search-button {
+  display: flex;
+  align-items: center;
+}
+
+
 .products-container {
     display: flex;
     flex-wrap: wrap;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Productos } from 'src/app/clases/producto';
+import { ProductosService } from 'src/app/servicios/api-productos/productos.service';
 import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
 
 @Component({
@@ -9,7 +10,11 @@ import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
 })
 export class ProductosComponent {
   productos: Productos[] = [];
-  constructor(private tiendaService:TiendaService){}
+  nombre: string = '';
+  errorStatus: boolean = false;
+  errorMsj: any = "";
+
+  constructor(private tiendaService:TiendaService, private productoService:ProductosService){}
 
   ngOnInit(): void{
     this.getProductos();
@@ -22,6 +27,23 @@ export class ProductosComponent {
   }
   addToCart(product: Productos) {
     this.tiendaService.añadirProducto(product)
+  }
+
+  
+  buscarPorNombreAutorEditorial(nombre: string) {
+    this.productoService.buscarPorNombreAutorEditorial(nombre).subscribe(
+      data=> {
+        this.errorStatus = false;
+        this.productos = data;
+       
+      },
+      error => {
+        if (error.error.message == "Lo sentimos, no pudimos encontrar tu búsqueda.") {
+          this.errorStatus = true;
+          this.errorMsj = error.error.message;
+        }
+      }
+    );
   }
 
 }
