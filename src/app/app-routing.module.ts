@@ -9,6 +9,8 @@ import { RegistrarComponent } from './admin/producto/registrar/registrar.compone
 import { EditarComponent } from './admin/producto/editar/editar.component';
 import { PrincipalAdminComponent } from './admin/principal-admin/principal-admin.component';
 import { ProductoRegistrarEditarComponent } from './admin/producto/producto-registrar-editar/producto-registrar-editar.component';
+import { MotorizadoComponent } from './admin/motorizado/motorizado.component';
+import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizado-registrar-editar/motorizado-registrar-editar.component';
 
 const routes: Routes = [
   { path: '' , redirectTo:'crisol', pathMatch:'full'},
@@ -16,6 +18,11 @@ const routes: Routes = [
   { path:'crisol/cliente/cuenta/login', component:LoginComponent},
   { path: 'crisol/cliente/cuenta/registrarse', component:RegistroComponent},
 
+
+
+
+
+  
   //ruta para el menú backoffice
   { path:'admin/principal', component:PrincipalAdminComponent,
   children:[
@@ -24,7 +31,10 @@ const routes: Routes = [
     //{ path:'registrar-producto', component:RegistrarComponent},
     //{ path:'editar-producto/:id', component:EditarComponent},
     { path:'crud-producto', component:ProductoRegistrarEditarComponent},
-    { path:'crud-producto/:id', component:ProductoRegistrarEditarComponent}
+    { path:'crud-producto/:id', component:ProductoRegistrarEditarComponent},
+    { path:'motorizados', component:MotorizadoComponent},
+    { path:'crud-motorizado', component:MotorizadoRegistrarEditarComponent},
+    { path:'crud-motorizado/:id',component:MotorizadoRegistrarEditarComponent}
   ]
 },
 ];

@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Motorizados</h2>
+        <button class="btn btn-primary" [routerLink]="['/admin/principal/crud-motorizado']">
+            Registrar Motorizados
+          </button>
+    <div class="card-body">
+        <table class="table table-striped mt-4">
+            <thead class="table-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>DNI</th>
+                    <th>Placa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of motorizados">
+                    <td>{{a.motorizadoId}}</td>
+                    <td>{{a.nombres}}</td>
+                    <td>{{a.apellidos}}</td>
+                    <td>{{a.dni}}</td>
+                    <td>{{a.placa}}</td>
+                    <td>
+                        <button [routerLink]="['/admin/principal/crud-motorizado',a.motorizadoId]" class="btn btn-warning m-lg-2">Editar</button>
+                        <!--- <button class="btn btn-danger">Eliminar</button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> 

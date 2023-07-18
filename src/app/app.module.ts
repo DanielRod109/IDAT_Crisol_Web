@@ -21,6 +21,9 @@ import { RegistrarComponent } from './admin/producto/registrar/registrar.compone
 import { EditarComponent } from './admin/producto/editar/editar.component';
 import { ProductoRegistrarEditarComponent } from './admin/producto/producto-registrar-editar/producto-registrar-editar.component';
 import { PrincipalAdminComponent } from './admin/principal-admin/principal-admin.component';
+import { AsignarMotorizadoComponent } from './admin/asignar-motorizado/asignar-motorizado.component';
+import { MotorizadoComponent } from './admin/motorizado/motorizado.component';
+import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizado-registrar-editar/motorizado-registrar-editar.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { PrincipalAdminComponent } from './admin/principal-admin/principal-admin
     RegistrarComponent,
     EditarComponent,
     ProductoRegistrarEditarComponent,
-    PrincipalAdminComponent
+    PrincipalAdminComponent,
+    AsignarMotorizadoComponent,
+    MotorizadoComponent,
+    MotorizadoRegistrarEditarComponent
    // CategoriaComponent,
    // LoginComponent,
    // RegistroComponent,

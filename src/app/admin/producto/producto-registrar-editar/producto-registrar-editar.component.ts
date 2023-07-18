@@ -27,7 +27,7 @@ export class ProductoRegistrarEditarComponent implements OnInit {
       }
     })
   }
-
+  
   public createLibro(): void {
     this.productoService.registrarProductos(this.producto)
       .subscribe(
@@ -39,10 +39,10 @@ export class ProductoRegistrarEditarComponent implements OnInit {
   }
 
   updateLibro(): void {
-    this.irAListado();
     this.productoService.actualizarProductos(this.producto)
       .subscribe(
-        producto => {            
+        producto => {
+          this.irAListado();            
           swal.fire('Libro Actualizado', `Libro ${producto.nombre} actualizado.`, 'success')        
         }   
       )    
