@@ -24,6 +24,7 @@ import { PrincipalAdminComponent } from './admin/principal-admin/principal-admin
 import { AsignarMotorizadoComponent } from './admin/asignar-motorizado/asignar-motorizado.component';
 import { MotorizadoComponent } from './admin/motorizado/motorizado.component';
 import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizado-registrar-editar/motorizado-registrar-editar.component';
+import { AuthguardGuard } from './seguridad/authguard.guard';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizad
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,11 @@
-export class Cliente{
-    id:any | undefined; //undefined para inicializar
-    dni: string | undefined;
-    apellidos: string | undefined; 
-    nombres: string | undefined;
-    telefono: string | undefined;
-    direccion: string | undefined;
-    email: string | undefined;
-    password : string | undefined;
-    estado : string | undefined;
-}
+export class Cliente {
+    id: any | null = null;
+    dni: string | null = null;
+    apellidos: string | null = null;
+    nombres: string | null = null;
+    telefono: string | null = null;
+    direccion: string | null = null;
+    email: string | null = null;
+    password: string | null = null;
+    estado: string | null = null;
+  }

@@ -106,15 +106,21 @@
       <li><a href="#">EBOOKS</a></li>
       <li><a href="#">SMART PLAY</a></li>
       <li><a href="admin/principal">LIBROS A PEDIDOS</a></li>
-      <li class="login">
-        <a *ngIf="isAuthenticated()" (click)="onLogout()">
-          <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
-        </a>
-        <a *ngIf="!isAuthenticated()" href="crisol/cliente/cuenta/login">
+      <li class="nav-item login" *ngIf="isAuthenticated()">
+        <button class="btn btn-link text-black" (click)="toggleMenu()">
+          <i class="fas fa-user"></i> {{ clienteNombre}}
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="user-menu" *ngIf="showMenu">
+          <button  class="btn btn-secondary" (click)="onLogout()">Cerrar sesión</button>
+        </div>
+      </li>
+      <li class="nav-item login" *ngIf="!isAuthenticated()">
+        <a class="btn btn-link text-black" href="crisol/cliente/cuenta/login">
           <i class="fas fa-user"></i> Iniciar sesión
         </a>
       </li>
-
+      
       <li class="carrito" >
         <a (click)="onToggleCart()">
           <li class="navbar-cart-items" *ngIf="(myCart$ |async)?.length">

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoginInterface } from '../../clases/LoginInterface';
 import { RespuestaInterface } from 'src/app/clases/RespuestaLoginInterface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Cliente } from 'src/app/clases/cliente';
 
 @Injectable({
@@ -12,28 +12,46 @@ export class ClienteServiceService {
   private url: string = "http://localhost:8080/crisol/cliente/";
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  private isLoggedIn: boolean = false;
+  private clienteLogueado: boolean = false;
+  private clienteNombre: string | null = null;
 
   constructor(private http: HttpClient) {
-    const isLoggedInString = localStorage.getItem('isLoggedIn');
+    const isLoggedInString = localStorage.getItem('clienteLogueado');
+    const clienteNombreString = localStorage.getItem('clienteNombre');
     if (isLoggedInString) {
-      this.isLoggedIn = JSON.parse(isLoggedInString);
+      this.clienteLogueado = JSON.parse(isLoggedInString);
+    }
+    if (clienteNombreString) {
+      this.clienteNombre = clienteNombreString;
     }
   }
 
   loginCorreo(form: LoginInterface): Observable<RespuestaInterface> {
     let url_autenticar = this.url + "autenticar";
-    return this.http.post<RespuestaInterface>(url_autenticar, form);
+    return this.http.post<RespuestaInterface>(url_autenticar, form)
+      .pipe(
+        tap((respuesta: RespuestaInterface) => {
+         
+        if (respuesta.message == "Inicio de sesión exitoso"){
+            this.clienteLogueado = true;
+            this.clienteNombre = respuesta.nombreCliente;
+            localStorage.setItem('clienteLogueado', JSON.stringify(this.clienteLogueado));
+            localStorage.setItem('clienteNombre', this.clienteNombre);
+          }
+        })
+      );
   }
 
   login() {
-    this.isLoggedIn = true;
-    localStorage.setItem('isLoggedIn', JSON.stringify(this.isLoggedIn));
+    this.clienteLogueado = true;
+    localStorage.setItem('clienteLogueado', JSON.stringify(this.clienteLogueado));
   }
 
   logout() {
-    this.isLoggedIn = false;
-    localStorage.setItem('isLoggedIn', JSON.stringify(this.isLoggedIn));
+    this.clienteLogueado = false;
+    this.clienteNombre = null;
+    localStorage.setItem('clienteLogueado', JSON.stringify(this.clienteLogueado));
+    localStorage.removeItem('clienteNombre');
   }
 
   createCliente(cliente: Cliente): Observable<Cliente> {
@@ -41,6 +59,10 @@ export class ClienteServiceService {
   }
 
   isAuthenticated(): boolean {
-    return this.isLoggedIn;
+    return this.clienteLogueado;
+  }
+
+  getClienteNombre(): string | null {
+    return this.clienteNombre;
   }
 }

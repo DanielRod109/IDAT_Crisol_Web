@@ -1,20 +1,79 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Crisol</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="admin/principal/productos">Productos</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="admin/principal/motorizados">Motorizados</a>
-          </li>
-        </ul>
+<div class="menu-wrapper">
+  <div class="sidebar-header">
+    <div class="sideBar">
+      <div class="menu-header"><img src="https://odi.ucr.ac.cr/medios/imagenes/2010/logo-crisol.jpg" /></div>
+      <ul>
+        <li [ngClass]="{ 'selected': isSelected('admin/principal') }" (click)="selectOption('admin/principal')">
+          <i class="fas fa-home"></i><label>Home</label>
+        </li>
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/productos') }" (click)="selectOption('admin/principal/productos')"
+        *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
+          <i class="fa-solid fa-book"></i><a href="admin/principal/productos">Productos</a>
+        </li>
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/usuarios') }" (click)="selectOption('admin/principal/usuarios')"
+        *ngIf="rolUsuario =='Administrador'">
+          <i class="fa-solid fa-users"></i><a href="admin/principal/usuarios">Usuarios</a>
+        </li>
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/ventas') }" (click)="selectOption('admin/principal/ventas')"
+        *ngIf="rolUsuario =='Ventas' || rolUsuario =='Administrador'">
+          <i class="fa-solid fa-hand-holding-dollar"></i><a href="admin/principal/ventas">Ventas</a>
+        </li>
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/compras') }" (click)="selectOption('admin/principal/compras')"
+        *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
+          <i class="fa-solid fa-cart-shopping"></i><a href="admin/principal/compras">Compras</a>
+        </li>
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/almacen') }" (click)="selectOption('admin/principal/almacen')"
+        *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
+          <i class="fa-solid fa-warehouse"></i><a href="admin/principal/almacen">Almacén</a>
+        </li>
+        <li>
+          <i class="fa-solid fa-right-from-bracket"></i><a (click)="onLogout()">Cerrar Sesión</a>
+        </li>
+      </ul>
+      <span class="cross-icon"><i class="fas fa-times"></i></span>
+    </div>
+    <div class="backdrop"></div>
+    <div class="content">
+      <header class="menu-header">
+        <div></div>
+        <h1 *ngIf="isAuthenticated()">{{ nombres }}    |    {{ rolUsuario }}</h1>
+        <img src="../../../assets/usuario.jpeg" />
+      </header>
+      <div class="content-data">
+        <router-outlet></router-outlet>
       </div>
     </div>
-  </nav>
+  </div>
+</div>
+<!--
+<script>
+    $("#mobile").click(function() {
+    $('.sideBar').addClass("showMenu");
+    $('.sideBar').removeClass("widthChange");
+    $('.backdrop').addClass('showBackdrop')
+    });
+    $(".cross-icon").click(function() {
+    $('.sideBar').removeClass("showMenu");
+    $('.backdrop').removeClass('showBackdrop')
+    });
+    $(".backdrop").click(function() {
+    $('.sideBar').removeClass("showMenu");
+    $('.backdrop').removeClass('showBackdrop')
+    });
+    $("#desktop").click(function() {
+    $('li label').toggleClass("hideMenuList");
+    $('.sideBar').toggleClass("widthChange");
+    });
+    $('li').click(function() {
+    $('li').removeClass();
+    $(this).addClass('selected');
+    $('.sideBar').removeClass("showMenu");
+    });
+
+    $(document).ready(function() {
+    $('li').click(function() {
+      var content = $(this).data('content');
+      $('.content-data').html(content);
+    });
+  });
+</script>-->

@@ -1,0 +1,99 @@
+<div class="container">
+  <h1 class="text-center p-3">
+    {{ usuario.usuarioId ? 'Edición de usuario' : 'Registro de usuario' }}
+  </h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <form  class="custom-form">
+        <div class="form-group">
+          <label for="dni">DNI</label>
+          <input type="text" maxlength="8" [(ngModel)]="usuario.dni" (keydown)="validarNumerico($event)" name="dni" required>
+          <div *ngIf="usuario.dni === ''" class="error-message">
+            Campo requerido*
+          </div>
+          <div *ngIf="usuario.dni && (usuario.dni.length < 8 || usuario.dni.length > 8)" class="error-message">
+            El DNI debe tener exactamente 8 caracteres.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre Completo</label>
+          <input type="text" [(ngModel)]="usuario.nombre_trabajador"  name="nombre" required>
+          <div *ngIf="usuario.nombre_trabajador === ''" class="error-message">
+            Campo requerido*
+          </div>
+          <div *ngIf="usuario.nombre_trabajador && usuario.nombre_trabajador.length < 6" class="error-message">
+            Ingrese su nombre completo.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" [(ngModel)]="usuario.telefono" maxlength="9" (keydown)="validarNumerico($event)" name="telefono" required>
+          <div *ngIf="usuario.telefono === ''" class="error-message">
+            Campo requerido*
+          </div>
+          <div *ngIf="usuario.telefono && (usuario.telefono.length < 9 || usuario.telefono.length > 9)" class="error-message">
+            Le faltan dígitos.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" [(ngModel)]="usuario.email" name="email" required>
+          <div *ngIf="usuario.email === ''" class="error-message">
+            Campo requerido*
+          </div>
+          <div *ngIf="usuario.email && !emailValido()" class="error-message">
+            Ingrese un email válido.
+          </div>
+        </div>
+        <div class="form-group" *ngIf="!usuario.usuarioId">
+          <label for="password">Contraseña</label>
+          <input type="password" maxlength="10" [(ngModel)]="usuario.password" name="password" required>
+          <div *ngIf="usuario.password === ''" class="error-message">
+            Campo requerido*
+          </div>
+          <div *ngIf="usuario.password && (usuario.password.length < 8 || usuario.password.length > 10)" class="error-message">
+            La contraseña debe tener entre 8 y 10 caracteres.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="rol">Rol</label>
+          <select  [(ngModel)]="seleccionRol" name="rolId" class="form-select">
+            <option value="" disabled="disabled" >Seleccionar Rol</option>
+            <option *ngFor="let rol of roles" [value]="rol.rolId">{{ rol.nombre_rol }}</option>
+          </select>
+          <div *ngIf="seleccionRol === 0" class="error-message">
+            Seleccione un rol.
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="usuario.usuarioId">
+          <label for="estado">Estado del usuario</label>
+          <select  [(ngModel)]="usuario.estado" name="estado" class="form-select">
+            <option  value="" disabled="disabled">Seleccione Estado</option>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+          </select>
+          <div *ngIf="usuario.estado === ''" class="error-message">
+            Campo requerido*
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-primary mr-2 custom-button" (click)="usuario.usuarioId ? editarUsuario() : crearUsuario()">
+              <ng-container *ngIf="usuario.usuarioId; else createIcon">
+                <i class="fa-solid fa-pen"></i>  Editar
+              </ng-container>
+              <ng-template #createIcon>
+                <i class="fa-solid fa-check"></i>  Crear
+              </ng-template>
+            </button>
+            <button type="button" name="button" [routerLink]="['/admin/principal/usuarios']" class="btn btn-secondary">
+              <i class="fa-solid fa-xmark"></i>  Cancelar
+            </button>
+          </div>
+         </div>
+      </form>
+    </div>
+  </div>
+</div>
