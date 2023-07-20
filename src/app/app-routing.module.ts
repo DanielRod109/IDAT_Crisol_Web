@@ -14,6 +14,9 @@ import { FormUsuarioComponent } from './admin/usuarios/form-usuario/form-usuario
 import { LoginUsuarioComponent } from './admin/usuarios/login-usuario/login-usuario.component';
 import { AuthguardGuard } from './seguridad/authguard.guard';
 //import { LoginComponent } from './admin';
+import { MotorizadoComponent } from './admin/motorizado/motorizado.component';
+import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizado-registrar-editar/motorizado-registrar-editar.component';
+
 const routes: Routes = [
   { 
     path: '' , redirectTo:'crisol',
@@ -37,6 +40,11 @@ const routes: Routes = [
     component:LoginUsuarioComponent
   },
 
+
+
+
+
+  
   //ruta para el menú backoffice
   { 
     path:'admin/principal', 
@@ -52,7 +60,10 @@ const routes: Routes = [
     
     { path:'usuarios', component:UsuarioComponent},
     { path:'crud-usuarios', component:FormUsuarioComponent},
-    { path:'crud-usuarios/:id', component:FormUsuarioComponent}
+    { path:'crud-usuarios/:id', component:FormUsuarioComponent},
+    { path:'motorizados', component:MotorizadoComponent},
+    { path:'crud-motorizado', component:MotorizadoRegistrarEditarComponent},
+    { path:'crud-motorizado/:id',component:MotorizadoRegistrarEditarComponent}
   ]
 },
 ];

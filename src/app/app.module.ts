@@ -25,6 +25,9 @@ import { UsuarioComponent } from './admin/usuarios/usuario/usuario.component';
 import { FormUsuarioComponent } from './admin/usuarios/form-usuario/form-usuario.component';
 import { LoginUsuarioComponent } from './admin/usuarios/login-usuario/login-usuario.component';
 import { AuthguardGuard } from './seguridad/authguard.guard';
+import { AsignarMotorizadoComponent } from './admin/asignar-motorizado/asignar-motorizado.component';
+import { MotorizadoComponent } from './admin/motorizado/motorizado.component';
+import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizado-registrar-editar/motorizado-registrar-editar.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +42,13 @@ import { AuthguardGuard } from './seguridad/authguard.guard';
     RegistrarComponent,
     EditarComponent,
     ProductoRegistrarEditarComponent,
-    PrincipalAdminComponent
+    PrincipalAdminComponent,
    // UsuarioComponent,
     //FormUsuarioComponent,
     //LoginUsuarioComponent
+    AsignarMotorizadoComponent,
+    MotorizadoComponent,
+    MotorizadoRegistrarEditarComponent
    // CategoriaComponent,
    // LoginComponent,
    // RegistroComponent,

@@ -26,6 +26,11 @@
         *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
           <i class="fa-solid fa-warehouse"></i><a href="admin/principal/almacen">Almacén</a>
         </li>
+
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/motorizados') }" (click)="selectOption('admin/principal/motorizados')"
+        *ngIf="rolUsuario =='Administrador'">
+        <i class="fa-solid fa-motorcycle"></i><a href="admin/principal/motorizados">Motorizados</a>
+        </li>
         <li>
           <i class="fa-solid fa-right-from-bracket"></i><a (click)="onLogout()">Cerrar Sesión</a>
         </li>

@@ -27,26 +27,40 @@ export class ProductoRegistrarEditarComponent implements OnInit {
       }
     })
   }
-
+  
   public createLibro(): void {
     this.productoService.registrarProductos(this.producto)
       .subscribe(
-        producto => {
+        (producto) => {
           this.router.navigate(['admin/principal'])
-          swal.fire('Nuevo Libro', `Libro ${producto.nombre} creado.`, 'success')
+          swal.fire(
+            'Éxito!',
+            'Producto creado correctamente',
+            'success'
+            )
+        },
+        (error) => {
+          console.error(error);
         }
       );
   }
 
   updateLibro(): void {
-    this.irAListado();
     this.productoService.actualizarProductos(this.producto)
       .subscribe(
-        producto => {            
-          swal.fire('Libro Actualizado', `Libro ${producto.nombre} actualizado.`, 'success')        
-        }   
-      )    
+        (producto )=> {
+          this.router.navigate(['admin/principal/productos'])         
+          swal.fire(
+            'Éxito!',
+            'Producto actualizado correctamente',
+            'success')        
+        } ,
+        (error) => {
+          console.error(error);
+        }
+      ); 
   }
+  
   irAListado(){
     this.router.navigate(['admin/principal/productos'])
   }
