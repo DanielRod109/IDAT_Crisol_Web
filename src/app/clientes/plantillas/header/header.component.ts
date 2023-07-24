@@ -13,8 +13,11 @@ export class HeaderComponent implements OnInit {
   clienteNombre: string | null = null;
   showMenu: boolean = false;
   showSubMenu: boolean = false;
-  myCart$ = this.tiendaService.myCart$;
 
+
+  
+  
+  myCart = this.tiendaService.totalCarrito();
 
   constructor(private clienteService: ClienteServiceService, private tiendaService:TiendaService) { }
 
@@ -49,6 +52,6 @@ export class HeaderComponent implements OnInit {
   }
   //Carrito
   onToggleCart() {
-    this.viewCart = !this.viewCart
+    this.viewCart = !this.viewCart;
   };
 }

@@ -15,6 +15,7 @@ import { FormUsuarioComponent } from './admin/usuarios/form-usuario/form-usuario
 import { LoginUsuarioComponent } from './admin/usuarios/login-usuario/login-usuario.component';
 import { UsuarioComponent } from './admin/usuarios/usuario/usuario.component';
 import { AuthguardGuard } from './seguridad/authguard.guard';
+import { AsignarMotorizadoComponent } from './admin/asignar-motorizado/asignar-motorizado.component';
 
 const routes: Routes = [
   { 
@@ -46,14 +47,19 @@ const routes: Routes = [
     canActivate: [AuthguardGuard], // indica que el usuario debe iniciar sesion
   children:[
     //sub rutas para utilizar "<router-outlet>" dentro del menú principal
+
+    //CRUD Productos
     { path:'productos', component:ProductoComponent},
-    //{ path:'registrar-producto', component:RegistrarComponent},
-    //{ path:'editar-producto/:id', component:EditarComponent},
     { path:'crud-producto', component:ProductoRegistrarEditarComponent},
     { path:'crud-producto/:id', component:ProductoRegistrarEditarComponent},
+    //CRUD Motorizados
     { path:'motorizados', component:MotorizadoComponent},
     { path:'crud-motorizado', component:MotorizadoRegistrarEditarComponent},
-    { path:'crud-motorizado/:id',component:MotorizadoRegistrarEditarComponent}
+    { path:'crud-motorizado/:id',component:MotorizadoRegistrarEditarComponent},
+    //Asignar Motorizado
+    { path:'asignar-motorizado', component:AsignarMotorizadoComponent}
+
+
   ]
 },
 ];

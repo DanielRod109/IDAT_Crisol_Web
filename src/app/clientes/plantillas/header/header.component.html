@@ -123,8 +123,8 @@
       
       <li class="carrito" >
         <a (click)="onToggleCart()">
-          <li class="navbar-cart-items" *ngIf="(myCart$ |async)?.length">
-            <p>{{ (myCart$ | async)?.length }}</p>
+          <li class="navbar-cart-items" *ngIf="myCart !==0">
+            <p> {{myCart}} </p>
           </li>
           <i class="fa-solid fa-cart-shopping"></i>
         </a>
@@ -132,6 +132,7 @@
       <div class="cart" [ngClass]="{ show: viewCart }">
         <app-carrito></app-carrito>
       </div>
+      
     </ul>
   </nav>
 </header>

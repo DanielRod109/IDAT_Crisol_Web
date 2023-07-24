@@ -25,6 +25,12 @@ import { AsignarMotorizadoComponent } from './admin/asignar-motorizado/asignar-m
 import { MotorizadoComponent } from './admin/motorizado/motorizado.component';
 import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizado-registrar-editar/motorizado-registrar-editar.component';
 import { AuthguardGuard } from './seguridad/authguard.guard';
+import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.component';
+import { ListaCompraComponent } from './clientes/lista-compra/lista-compra.component';
+
+//PAYPAL
+import { NgxPayPalModule } from 'ngx-paypal';
+import { ItemsCarritoComponent } from './clientes/items-carrito/items-carrito.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +48,10 @@ import { AuthguardGuard } from './seguridad/authguard.guard';
     PrincipalAdminComponent,
     AsignarMotorizadoComponent,
     MotorizadoComponent,
-    MotorizadoRegistrarEditarComponent
+    MotorizadoRegistrarEditarComponent,
+    DatosEntregaComponent,
+    ListaCompraComponent,
+    ItemsCarritoComponent
    // CategoriaComponent,
    // LoginComponent,
    // RegistroComponent,
@@ -53,6 +62,7 @@ import { AuthguardGuard } from './seguridad/authguard.guard';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPayPalModule,
     HttpClientModule
   ],
   providers: [AuthguardGuard],
