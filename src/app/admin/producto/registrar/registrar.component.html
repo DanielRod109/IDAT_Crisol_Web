@@ -1,6 +1,7 @@
 <div class="col-md-6 offset-md-3">
-    <h3 class="text-center">Registro de productos</h3>
-
+    <h1 class="text-center p-3">
+        {{ productos.id_libro ? 'Edición de producto' : 'Registro de producto' }}
+      </h1>
     <form (ngSubmit)="onSubmit()" #libroForm="ngForm">
 
         <div class="row">
@@ -62,11 +63,23 @@
                     <input type="text" class="form-control" id="npaginas" [(ngModel)]="productos.npaginas" name="npaginas" (keydown)="validarNum($event)">
                 </div>
             </div>
+            
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Autor:</label>
-                    <input type="text" class="form-control" id="autor" [(ngModel)]="productos.autor" name="autor">
+                    <label>Autor : </label>
+                    <input type="text" class="form-control" id="autor" [(ngModel)]="productos.nombre_autor" required
+                        name="autor">
                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="subgenero">Subgenero</label>
+            <select [(ngModel)]="seleccionSubgenero" name="subgeneroId" class="form-select form-control">
+                <option value="" disabled="disabled">Seleccionar Subgenero</option>
+                <option *ngFor="let subg of subgenero" [value]="subg.subgeneroId">{{ subg.nombre }}</option>
+            </select>
+            <div *ngIf="seleccionSubgenero === 0" class="error-message">
+                Seleccione un Subgenero.
             </div>
         </div>
         <div class="form-group">
@@ -78,5 +91,22 @@
         <div class="text-center">
             <button class="btn btn-success" [disabled]="!libroForm.form.valid">Guardar</button>
         </div>
+
+
+        <div class="form-group">
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary mr-2 custom-button" (click)="productos.id_libro? editarProducto() : guardarProducto()">
+                <ng-container *ngIf="productos.id_libro; else createIcon">
+                  <i class="fa-solid fa-pen"></i>  Editar
+                </ng-container>
+                <ng-template #createIcon>
+                  <i class="fa-solid fa-check"></i>  Crear
+                </ng-template>
+              </button>
+              <button type="button" name="button" [routerLink]="['/admin/principal/usuarios']" class="btn btn-secondary">
+                <i class="fa-solid fa-xmark"></i>  Cancelar
+              </button>
+            </div>
+           </div>
     </form>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Productos } from 'src/app/clases/producto';
+import { Subgenero } from 'src/app/clases/subgnero';
 import { ProductosService } from 'src/app/servicios/api-productos/productos.service';
 import swal from 'sweetalert2';
 
@@ -11,33 +12,73 @@ import swal from 'sweetalert2';
 })
 export class ProductoRegistrarEditarComponent implements OnInit {
 
-
+  subgenero : Subgenero[];
+  seleccionSubgenero:number;
   public producto: Productos = new Productos()
   constructor(private productoService: ProductosService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  
+  
   ngOnInit(): void {
+    this.cargarSubgeneros();
     this.cargarProductos()
+  }
+
+  cargarSubgeneros(): void {
+    this.productoService.listarSubgeneros().subscribe(
+      (response: Subgenero[]) => {
+        this.subgenero = response;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
 
   cargarProductos(): void {
-    this.activatedRoute.params.subscribe(params => {
-      let id = params['id']
+    this.activatedRoute.params.subscribe((params) => {
+      const id = +params['id'];
+
       if (id) {
-        this.productoService.obtenerProducto(id).subscribe((producto) => this.producto = producto)
+        this.productoService.obtenerProducto(id).subscribe(
+          (producto) => {
+            this.producto = producto;
+            this.seleccionSubgenero = producto.subgenero?.subgeneroId || 0; 
+           
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
       }
-    })
+    });
   }
   
-  public createLibro(): void {
-    this.productoService.registrarProductos(this.producto)
+  guardarProducto(){
+    this.productoService
+    .registrarProductos(this.producto, this.seleccionSubgenero)
+    .subscribe(
+      (producto) => {
+        this.router.navigate(['admin/principal/productos']);
+        swal.fire(
+          'Éxito!',
+          'Producto creado correctamente',
+          'success'
+        )
+    },error => console.log(error));
+  }
+  public editarProducto(): void {
+   
+    this.productoService
+      .actualizarProductos(this.producto, this.seleccionSubgenero)
       .subscribe(
         (producto) => {
-          this.router.navigate(['admin/principal'])
+          this.router.navigate(['admin/principal/productos']);
           swal.fire(
             'Éxito!',
-            'Producto creado correctamente',
+            'Producto actualizado correctamente',
             'success'
-            )
+          )
         },
         (error) => {
           console.error(error);
@@ -45,21 +86,6 @@ export class ProductoRegistrarEditarComponent implements OnInit {
       );
   }
 
-  updateLibro(): void {
-    this.productoService.actualizarProductos(this.producto)
-      .subscribe(
-        (producto )=> {
-          this.router.navigate(['admin/principal/productos'])         
-          swal.fire(
-            'Éxito!',
-            'Producto actualizado correctamente',
-            'success')        
-        } ,
-        (error) => {
-          console.error(error);
-        }
-      ); 
-  }
   
   irAListado(){
     this.router.navigate(['admin/principal/productos'])

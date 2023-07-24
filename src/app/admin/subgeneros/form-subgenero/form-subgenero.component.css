@@ -17,8 +17,6 @@
   }
   
   .custom-form input[type="text"],
-  .custom-form input[type="email"],
-  .custom-form input[type="password"],
   .custom-form select {
     width: 100%;
     padding: 10px;

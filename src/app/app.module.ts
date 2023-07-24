@@ -28,6 +28,12 @@ import { AuthguardGuard } from './seguridad/authguard.guard';
 import { AsignarMotorizadoComponent } from './admin/asignar-motorizado/asignar-motorizado.component';
 import { MotorizadoComponent } from './admin/motorizado/motorizado.component';
 import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizado-registrar-editar/motorizado-registrar-editar.component';
+import { FormSubgeneroComponent } from './admin/subgeneros/form-subgenero/form-subgenero.component';
+import { SubgeneroComponent } from './admin/subgeneros/subgenero/subgenero.component';
+import { FormGeneroComponent } from './admin/generos/form-genero/form-genero.component';
+import { GeneroComponent } from './admin/generos/genero/genero.component';
+import { FormCategoriaComponent } from './admin/categorias/form-categoria/form-categoria.component';
+import { CategoriaComponent } from './admin/categorias/categoria/categoria.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +54,13 @@ import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizad
     //LoginUsuarioComponent
     AsignarMotorizadoComponent,
     MotorizadoComponent,
-    MotorizadoRegistrarEditarComponent
+    MotorizadoRegistrarEditarComponent,
+    FormSubgeneroComponent,
+    SubgeneroComponent,
+    FormGeneroComponent,
+    GeneroComponent,
+    FormCategoriaComponent,
+    CategoriaComponent
    // CategoriaComponent,
    // LoginComponent,
    // RegistroComponent,

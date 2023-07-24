@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Productos } from 'src/app/clases/producto';
 import { ProductosService } from 'src/app/servicios/api-productos/productos.service';
 import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
@@ -11,15 +12,27 @@ import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
 export class ProductosComponent {
   productos: Productos[] = [];
   nombre: string = '';
+  subgenero: string | null;
   errorStatus: boolean = false;
   errorMsj: any = "";
 
-  constructor(private tiendaService:TiendaService, private productoService:ProductosService){}
+  constructor(private tiendaService:TiendaService,
+     private productoService:ProductosService,
+     private route: ActivatedRoute){}
 
-  ngOnInit(): void{
-    this.getProductos();
-  }
-
+     ngOnInit(): void {
+      this.route.queryParams.subscribe(params => {
+        this.subgenero = params['subgenero'];
+        if (this.subgenero && this.subgenero.trim().length > 0) {  // Asegúrate de que el subgénero no está vacío
+          this.productoService.buscarLibroporSubgenero(this.subgenero).subscribe(
+            productos => this.productos = productos,
+            error => console.error('Error al buscar libro por subgénero.')
+          );
+        } else {
+          this.getProductos();
+        }
+      });
+    }
   getProductos(){
     this.tiendaService.obtenerProductos().subscribe((data) =>{
       return this.productos = data;
@@ -46,4 +59,13 @@ export class ProductosComponent {
     );
   }
 
+    
+  buscarLibroporSubgenero(subgenero: string){
+    this.productoService.buscarLibroporSubgenero(subgenero).subscribe(
+      productos => {this.productos = productos},
+      error => {console.error('Error al buscar libro por subgenero.')}
+  )
+    
+
+}
 }

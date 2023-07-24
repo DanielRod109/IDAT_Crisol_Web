@@ -22,6 +22,7 @@
                             <th>Precio</th>
                             <th>Publicación</th>
                             <th>Autor</th>
+                            <th>Subgenero</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -34,7 +35,8 @@
                             <td>{{a.editorial}}</td>
                             <td>S/.{{a.precio}}</td>
                             <td>{{a.aedicion}}</td>
-                            <td>{{a.autor}}</td>
+                            <td>{{a.nombre_autor}}</td>
+                            <td>{{a.subgenero}}</td>
                             <td>
                                 <button type="button" name="button"  [routerLink]="['/admin/principal/crud-producto',a.id_libro]"
                                 class="btn btn-warning btn-sm"> <i class="fa-solid fa-pen"></i> </button>

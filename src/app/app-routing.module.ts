@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoriaComponent } from './admin/categoria/categoria.component';
 import { PrincipalComponent } from'./clientes/principal/principal.component';
 import { LoginComponent } from './clientes/login/login.component';
 import { RegistroComponent } from './clientes/registro/registro.component';
@@ -16,6 +15,12 @@ import { AuthguardGuard } from './seguridad/authguard.guard';
 //import { LoginComponent } from './admin';
 import { MotorizadoComponent } from './admin/motorizado/motorizado.component';
 import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizado-registrar-editar/motorizado-registrar-editar.component';
+import { SubgeneroComponent } from './admin/subgeneros/subgenero/subgenero.component';
+import { FormSubgeneroComponent } from './admin/subgeneros/form-subgenero/form-subgenero.component';
+import { GeneroComponent } from './admin/generos/genero/genero.component';
+import { FormGeneroComponent } from './admin/generos/form-genero/form-genero.component';
+import { CategoriaComponent } from './admin/categorias/categoria/categoria.component';
+import { FormCategoriaComponent } from './admin/categorias/form-categoria/form-categoria.component';
 
 const routes: Routes = [
   { 
@@ -24,6 +29,10 @@ const routes: Routes = [
   },
   { path:'crisol', 
     component:PrincipalComponent
+  },
+  {
+    path: 'crisol/:subgenero', 
+    component: PrincipalComponent 
   },
   { 
     path:'crisol/cliente/cuenta/login', 
@@ -63,7 +72,18 @@ const routes: Routes = [
     { path:'crud-usuarios/:id', component:FormUsuarioComponent},
     { path:'motorizados', component:MotorizadoComponent},
     { path:'crud-motorizado', component:MotorizadoRegistrarEditarComponent},
-    { path:'crud-motorizado/:id',component:MotorizadoRegistrarEditarComponent}
+    { path:'crud-motorizado/:id',component:MotorizadoRegistrarEditarComponent},
+    { path: 'subgeneros', component:SubgeneroComponent},
+    { path:'crud-subgeneros', component:FormSubgeneroComponent},
+    { path:'crud-subgeneros/:id', component:FormSubgeneroComponent},
+    { path: 'generos', component:GeneroComponent},
+    { path:'crud-generos', component:FormGeneroComponent},
+    { path:'crud-generos/:id', component:FormGeneroComponent},
+
+    { path: 'categorias', component:CategoriaComponent},
+    { path:'crud-categorias', component:FormCategoriaComponent},
+    { path:'crud-categorias/:id', component:FormCategoriaComponent},
+  
   ]
 },
 ];
@@ -74,5 +94,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [PrincipalComponent,CategoriaComponent,LoginComponent,
-                        RegistroComponent, UsuarioComponent,FormUsuarioComponent,LoginUsuarioComponent]
+export const routingComponents = [PrincipalComponent,LoginComponent,
+                        RegistroComponent, UsuarioComponent,FormUsuarioComponent,LoginUsuarioComponent,
+                      SubgeneroComponent, FormSubgeneroComponent, GeneroComponent,
+                    FormGeneroComponent, FormCategoriaComponent, CategoriaComponent]
