@@ -16,6 +16,7 @@ import { LoginUsuarioComponent } from './admin/usuarios/login-usuario/login-usua
 import { UsuarioComponent } from './admin/usuarios/usuario/usuario.component';
 import { AuthguardGuard } from './seguridad/authguard.guard';
 import { AsignarMotorizadoComponent } from './admin/asignar-motorizado/asignar-motorizado.component';
+import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.component';
 
 const routes: Routes = [
   { 
@@ -38,6 +39,12 @@ const routes: Routes = [
   { 
     path:'admin/login', 
     component:LoginUsuarioComponent
+  },
+
+  //Registrar Datos Entrega
+  {
+    path: 'crisol/entrega',
+    component: DatosEntregaComponent
   },
   
   //ruta para el menú backoffice

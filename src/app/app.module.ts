@@ -31,6 +31,7 @@ import { ListaCompraComponent } from './clientes/lista-compra/lista-compra.compo
 //PAYPAL
 import { NgxPayPalModule } from 'ngx-paypal';
 import { ItemsCarritoComponent } from './clientes/items-carrito/items-carrito.component';
+import { ItemProductoComponent } from './clientes/productos/item-producto/item-producto.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ItemsCarritoComponent } from './clientes/items-carrito/items-carrito.co
     MotorizadoRegistrarEditarComponent,
     DatosEntregaComponent,
     ListaCompraComponent,
-    ItemsCarritoComponent
+    ItemsCarritoComponent,
+    ItemProductoComponent
    // CategoriaComponent,
    // LoginComponent,
    // RegistroComponent,
