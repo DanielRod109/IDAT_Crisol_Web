@@ -16,3 +16,4 @@ export class Productos {
     img:string
     subgenero: Subgenero;
 }
+ 

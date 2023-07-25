@@ -15,7 +15,11 @@ export class HeaderComponent implements OnInit {
   clienteNombre: string | null = null;
   showMenu: boolean = false;
   showSubMenu: boolean = false;
+
+
   myCart$ = this.tiendaService.myCart$;
+  
+
 
   categorias: any = {};
   menuData : any[] = [];
@@ -95,7 +99,7 @@ export class HeaderComponent implements OnInit {
 
   //Carrito
   onToggleCart() {
-    this.viewCart = !this.viewCart
+    this.viewCart = !this.viewCart;
   };
 
   

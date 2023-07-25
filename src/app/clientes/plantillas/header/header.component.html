@@ -25,7 +25,7 @@
           <i class="fas fa-angle-down"></i>
         </button>
         <div class="user-menu" *ngIf="showMenu">
-          <button  class="btn btn-secondary" (click)="onLogout()">Cerrar sesión</button>
+          <button class="btn btn-secondary" (click)="onLogout()">Cerrar sesión</button>
         </div>
       </li>
       <li class="nav-item login" *ngIf="!isAuthenticated()">
@@ -33,38 +33,51 @@
           <i class="fas fa-user"></i> Iniciar sesión
         </a>
       </li>
-      
-      <li class="carrito" >
+
+<!---
+      <li class="carrito">
         <a (click)="onToggleCart()">
-          <li class="navbar-cart-items" *ngIf="(myCart$ |async)?.length">
-            <p>{{ (myCart$ | async)?.length }}</p>
-          </li>
-          <i class="fa-solid fa-cart-shopping"></i>
-        </a>
+
+      <li class="navbar-cart-items" *ngIf="myCart !==0">
+        <p> {{myCart}} </p>
       </li>
+      <i class="fa-solid fa-cart-shopping"></i>
+      </a>
+      </li>
+    -->
+    <li class="carrito" >
+      <a (click)="onToggleCart()">
+        <li class="navbar-cart-items" *ngIf="(myCart$ |async)?.length">
+          <p>{{ (myCart$ | async)?.length }}</p>
+        </li>
+        <i class="fa-solid fa-cart-shopping"></i>
+      </a>
+    </li>
+
+
+
       <div class="cart" [ngClass]="{ show: viewCart }">
         <app-carrito></app-carrito>
       </div>
+
     </ul>
   </nav>
 </header>
 
-  
-  <script>
-    const dropdowns = document.querySelectorAll('.dropdown');
-  
-    dropdowns.forEach((dropdown) => {
-      const menuOption = dropdown.querySelector('.menu-option');
-      const submenu = dropdown.querySelector('.submenu');
-  
-      menuOption.addEventListener('mouseenter', () => {
-        submenu.style.display = 'block'; // Cambia 'grid' por 'block'
-      });
-  
-      dropdown.addEventListener('mouseleave', () => { // Cambia 'menuOption' por 'dropdown'
-        submenu.style.display = 'none';
-      });
+
+<script>
+  const dropdowns = document.querySelectorAll('.dropdown');
+
+  dropdowns.forEach((dropdown) => {
+    const menuOption = dropdown.querySelector('.menu-option');
+    const submenu = dropdown.querySelector('.submenu');
+
+    menuOption.addEventListener('mouseenter', () => {
+      submenu.style.display = 'block'; // Cambia 'grid' por 'block'
     });
-  </script>
-  
-  
+
+    dropdown.addEventListener('mouseleave', () => { // Cambia 'menuOption' por 'dropdown'
+      submenu.style.display = 'none';
+    });
+  });
+</script>

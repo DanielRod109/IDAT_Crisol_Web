@@ -1,6 +1,16 @@
 export class DetalleVenta {
+
     detalleventaId:number;
-    cantidad:number;
-    precio_uni:number;
-    subtotal:number;
+
+    id_libro:number;
+
+    cantidad:number; //qty
+
+    precio_uni:number; //price
+
+
+    subtotal:number; 
+
+
 }
+

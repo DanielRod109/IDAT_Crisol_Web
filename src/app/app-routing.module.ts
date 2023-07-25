@@ -23,6 +23,8 @@ import { CategoriaComponent } from './admin/categorias/categoria/categoria.compo
 import { FormCategoriaComponent } from './admin/categorias/form-categoria/form-categoria.component';
 import { GenSubComponent } from './admin/generos-subgeneros/gen-sub/gen-sub.component';
 import { FormGenSubComponent } from './admin/generos-subgeneros/form-gen-sub/form-gen-sub.component';
+import { AsignarMotorizadoComponent } from './admin/asignar-motorizado/asignar-motorizado.component';
+import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.component';
 
 const routes: Routes = [
   { 
@@ -51,10 +53,11 @@ const routes: Routes = [
     component:LoginUsuarioComponent
   },
 
-
-
-
-
+  //Registrar Datos Entrega
+  {
+    path: 'crisol/datos-entrega',
+    component: DatosEntregaComponent
+  },
   
   //ruta para el menú backoffice
   { 
@@ -63,9 +66,9 @@ const routes: Routes = [
     canActivate: [AuthguardGuard], // indica que el usuario debe iniciar sesion
   children:[
     //sub rutas para utilizar "<router-outlet>" dentro del menú principal
+
+    //CRUD Productos
     { path:'productos', component:ProductoComponent},
-    //{ path:'registrar-producto', component:RegistrarComponent},
-    //{ path:'editar-producto/:id', component:EditarComponent},
     { path:'crud-producto', component:ProductoRegistrarEditarComponent},
     { path:'crud-producto/:id', component:ProductoRegistrarEditarComponent},
     
@@ -87,9 +90,17 @@ const routes: Routes = [
     { path:'crud-categorias/:id', component:FormCategoriaComponent},
 
     { path: 'generos-subgeneros', component:GenSubComponent},
-    { path:'registrar-generos-subgeneros', component:FormGenSubComponent}
+    { path:'registrar-generos-subgeneros', component:FormGenSubComponent},
 
   
+    //CRUD Motorizados
+    { path:'motorizados', component:MotorizadoComponent},
+    { path:'crud-motorizado', component:MotorizadoRegistrarEditarComponent},
+    { path:'crud-motorizado/:id',component:MotorizadoRegistrarEditarComponent},
+    //Asignar Motorizado
+    { path:'asignar-motorizado', component:AsignarMotorizadoComponent}
+
+
   ]
 },
 ];

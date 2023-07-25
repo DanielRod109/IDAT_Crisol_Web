@@ -13,6 +13,7 @@ export class PrincipalComponent implements OnInit {
   //Carrito de Compras
 
   productos:Productos[]=[];
+  
   constructor(private tiendaService:TiendaService){}
 
   ngOnInit(): void{

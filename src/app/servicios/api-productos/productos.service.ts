@@ -18,19 +18,17 @@ export class ProductosService {
 
   constructor(private httpClient: HttpClient) { }
 
+  listarSubgeneros():Observable<Subgenero[]>{
+    return this.httpClient.get<Subgenero[]>(this.urlSubgenero+"listar").pipe(
+      map(response=> response as Subgenero[])
+    )
+  }
+  //
   obtenerProductos(): Observable<Productos[]> {
-
     return this.httpClient.get<Productos[]>(`${this.baseUrl}listar`).pipe(
       map(response => response as Productos[])
     );
   }
-
-listarSubgeneros():Observable<Subgenero[]>{
-  return this.httpClient.get<Subgenero[]>(this.urlSubgenero+"listar").pipe(
-    map(response=> response as Subgenero[])
-  )
-}
-
 
 registrarProductos(producto: Productos, subgeneroId: number): Observable<Productos> {
   return this.buscarSubgenero(subgeneroId).pipe(
@@ -53,7 +51,8 @@ registrarProductos(producto: Productos, subgeneroId: number): Observable<Product
   obtenerProducto(id_libro:number):Observable<Productos>{
     return this.httpClient.get<Productos>(`${this.baseUrl}buscar/${id_libro}`);
   }
-  
+  //
+
    //se agrego este metodo
    buscarPorNombreAutorEditorial(nombre: string): Observable<Productos[]> {
     const url = `${this.baseUrl}buscarNombreAutorEditorial/${nombre}`;

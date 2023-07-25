@@ -37,6 +37,11 @@ import { CategoriaComponent } from './admin/categorias/categoria/categoria.compo
 import { FormGenSubComponent } from './admin/generos-subgeneros/form-gen-sub/form-gen-sub.component';
 import { GenSubComponent } from './admin/generos-subgeneros/gen-sub/gen-sub.component';
 import { BannerComponent } from './clientes/plantillas/banner/banner.component';
+import { ListaCompraComponent } from './clientes/lista-compra/lista-compra.component';
+
+//PAYPAL
+import { NgxPayPalModule } from 'ngx-paypal';
+import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +71,12 @@ import { BannerComponent } from './clientes/plantillas/banner/banner.component';
     CategoriaComponent,
     FormGenSubComponent,
     GenSubComponent,
-    BannerComponent
+    BannerComponent,
+    AsignarMotorizadoComponent,
+    MotorizadoComponent,
+    MotorizadoRegistrarEditarComponent,
+    ListaCompraComponent,
+    DatosEntregaComponent
    // CategoriaComponent,
    // LoginComponent,
    // RegistroComponent,
@@ -77,6 +87,7 @@ import { BannerComponent } from './clientes/plantillas/banner/banner.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPayPalModule,
     HttpClientModule
   ],
   providers: [AuthguardGuard],

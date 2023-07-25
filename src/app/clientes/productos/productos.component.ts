@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Productos } from 'src/app/clases/producto';
 import { ProductosService } from 'src/app/servicios/api-productos/productos.service';
@@ -9,7 +9,8 @@ import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css']
 })
-export class ProductosComponent {
+export class ProductosComponent implements OnInit {
+
   productos: Productos[] = [];
   nombre: string = '';
   subgenero: string | null;
@@ -38,6 +39,7 @@ export class ProductosComponent {
       return this.productos = data;
     })
   }
+  
   addToCart(product: Productos) {
     this.tiendaService.añadirProducto(product)
   }
