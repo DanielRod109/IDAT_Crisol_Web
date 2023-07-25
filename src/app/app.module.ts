@@ -34,6 +34,9 @@ import { FormGeneroComponent } from './admin/generos/form-genero/form-genero.com
 import { GeneroComponent } from './admin/generos/genero/genero.component';
 import { FormCategoriaComponent } from './admin/categorias/form-categoria/form-categoria.component';
 import { CategoriaComponent } from './admin/categorias/categoria/categoria.component';
+import { FormGenSubComponent } from './admin/generos-subgeneros/form-gen-sub/form-gen-sub.component';
+import { GenSubComponent } from './admin/generos-subgeneros/gen-sub/gen-sub.component';
+import { BannerComponent } from './clientes/plantillas/banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,10 @@ import { CategoriaComponent } from './admin/categorias/categoria/categoria.compo
     FormGeneroComponent,
     GeneroComponent,
     FormCategoriaComponent,
-    CategoriaComponent
+    CategoriaComponent,
+    FormGenSubComponent,
+    GenSubComponent,
+    BannerComponent
    // CategoriaComponent,
    // LoginComponent,
    // RegistroComponent,

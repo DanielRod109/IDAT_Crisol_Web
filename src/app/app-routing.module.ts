@@ -21,6 +21,8 @@ import { GeneroComponent } from './admin/generos/genero/genero.component';
 import { FormGeneroComponent } from './admin/generos/form-genero/form-genero.component';
 import { CategoriaComponent } from './admin/categorias/categoria/categoria.component';
 import { FormCategoriaComponent } from './admin/categorias/form-categoria/form-categoria.component';
+import { GenSubComponent } from './admin/generos-subgeneros/gen-sub/gen-sub.component';
+import { FormGenSubComponent } from './admin/generos-subgeneros/form-gen-sub/form-gen-sub.component';
 
 const routes: Routes = [
   { 
@@ -83,6 +85,10 @@ const routes: Routes = [
     { path: 'categorias', component:CategoriaComponent},
     { path:'crud-categorias', component:FormCategoriaComponent},
     { path:'crud-categorias/:id', component:FormCategoriaComponent},
+
+    { path: 'generos-subgeneros', component:GenSubComponent},
+    { path:'registrar-generos-subgeneros', component:FormGenSubComponent}
+
   
   ]
 },

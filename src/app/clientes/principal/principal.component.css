@@ -1,11 +1,22 @@
-.container {
+.app-container {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    width: 100vw;
-    position: relative;
-    background-color: white;
-}
+    min-height: 100vh;
+  }
+  
+  .hidden {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    top: -100px;
+  }
+
+  .container {
+    flex: 1 0 auto;
+  }
+  
+  app-footer {
+    flex-shrink: 0;
+  }
 .container-title {
     margin-bottom: 1.5rem;
 }
@@ -13,4 +24,13 @@
     /*display: flex;*/
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+
+.menu{
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: top 0.12s;
 }

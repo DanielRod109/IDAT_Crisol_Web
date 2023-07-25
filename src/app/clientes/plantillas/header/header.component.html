@@ -1,6 +1,7 @@
 <header>
   <nav>
     <ul>
+      <li class="crisol"><a href="/">Crisol</a></li>
       <!-- Repite este bloque por cada categoría -->
       <li *ngFor="let categoria of menuData" class="dropdown">
         <a class="menu-option">{{categoria.nombre}}</a>
@@ -16,8 +17,8 @@
         </ul>
       </li>
   <!-- Fin de la repetición -->
-
-      <li><a href="admin/principal">LIBROS A PEDIDOS</a></li>
+<!--
+      <li><a href="admin/principal">LIBROS A PEDIDOS</a></li>-->
       <li class="nav-item login" *ngIf="isAuthenticated()">
         <button class="btn btn-link text-black" (click)="toggleMenu()">
           <i class="fas fa-user"></i> {{ clienteNombre}}

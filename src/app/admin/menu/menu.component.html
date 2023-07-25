@@ -40,6 +40,12 @@
             <i class="fa-solid fa-mars-stroke-right"></i><a>Subgeneros</a>
           </li>
 
+          <li [ngClass]="{ 'selected': isSelected('admin/principal/generos-subgeneros') }"
+            (click)="selectOption('admin/principal/generos-subgeneros')"
+            *ngIf="rolUsuario =='Administrador' || rolUsuario =='Almacén'">
+            <i class="fa-solid fa-mars-stroke-right"></i><a>Generos-Subgeneros</a>
+          </li>
+
 
         </ul>
         <!-------------------------->
