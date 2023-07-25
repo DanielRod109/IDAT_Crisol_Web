@@ -1,5 +1,5 @@
 
-<div *ngIf="(myCart$ | async)?.length === 0">
+<div class="d-flex align-items-center justify-content-center" style="height: 100px;"  *ngIf="(myCart$ | async)?.length === 0">
     <br>
     <h4>Tu carrito esta vacío</h4>
     <br>
@@ -30,7 +30,7 @@
     <div class="cartTotal">
         <p class="cartTotal-total"> Total: S/. {{totalCart()}}</p>
     </div>
-    <button class="cart-btn" [routerLink]="['/crisol/entrega']" >Continuar con la compra</button>
+    <button class="cart-btn" [routerLink]="['/crisol/cliente/entrega']" >Continuar con la compra</button>
 </div>
   <!-- 
     <article>

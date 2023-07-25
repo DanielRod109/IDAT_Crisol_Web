@@ -47,11 +47,6 @@ export class CarritoComponent implements OnInit {
     this.tiendaService.restarCantidad(id)
   }
 
-
-  irDatosEntrega(){
-    this.router.navigate(['crisol/datos-entrega'])
-  }
-
   actUnidades(operacion: string, id: number) {
     const product = this.tiendaService.findPById(id)
     if (product) {

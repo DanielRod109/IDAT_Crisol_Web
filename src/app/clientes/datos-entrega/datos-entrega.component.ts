@@ -13,14 +13,14 @@ import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
 })
 export class DatosEntregaComponent implements OnInit {
 
+  entregaADomicilio: boolean = true;
+  direccion: string = '';
+  telefono: string = '';
+
   public payPalConfig?: IPayPalConfig;
- 
   carrito: Productos[] = [];
 
-  entregaADomicilio = false;
-
   myCart$ = this.tiendaService.myCart$;
-
   constructor(
     private tiendaService: TiendaService,
     private router: Router
@@ -31,27 +31,17 @@ export class DatosEntregaComponent implements OnInit {
     this.tiendaService.clear();
   }
 
+  limpiarFormulario() {
+    // Si se selecciona "Recojo en tienda", limpiamos los campos de dirección y teléfono
+    if (!this.entregaADomicilio) {
+      this.direccion = '';
+      this.telefono = '';
+    }
+  }
 
   ngOnInit() {
     this.initConfig();
   }
-
-/*
-  getItemsList(): any[] {
-    this.carrito = this.tiendaService.getCart();
-    const items: any[] = [];
-    let item = {};
-
-    this.carrito.forEach((it:Productos) =>{
-      item = {
-        name: it.nombre,
-        quantity: it.stock,
-        unit_amount: { value: it.precio, currency_code: 'USD' }
-      };
-      items.push(item);
-    });
-  }
-  */
   totalCart() {
     const r = this.tiendaService.totalCart();
     return r;

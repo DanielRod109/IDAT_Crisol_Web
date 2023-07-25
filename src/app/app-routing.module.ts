@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
+
 import { RouterModule, Routes } from '@angular/router';
+
 import { PrincipalComponent } from'./clientes/principal/principal.component';
+
 import { LoginComponent } from './clientes/login/login.component';
 import { RegistroComponent } from './clientes/registro/registro.component';
 import { ProductoComponent } from './admin/producto/producto.component';
@@ -55,7 +58,7 @@ const routes: Routes = [
  
   //Registrar Datos Entrega
   {
-    path: 'crisol/datos-entrega',
+    path: 'crisol/cliente/entrega',
     component: DatosEntregaComponent
   },
  
@@ -75,20 +78,25 @@ const routes: Routes = [
     { path:'usuarios', component:UsuarioComponent},
     { path:'crud-usuarios', component:FormUsuarioComponent},
     { path:'crud-usuarios/:id', component:FormUsuarioComponent},
+
     { path:'motorizados', component:MotorizadoComponent},
     { path:'crud-motorizado', component:MotorizadoRegistrarEditarComponent},
     { path:'crud-motorizado/:id',component:MotorizadoRegistrarEditarComponent},
+
     { path: 'subgeneros', component:SubgeneroComponent},
     { path:'crud-subgeneros', component:FormSubgeneroComponent},
     { path:'crud-subgeneros/:id', component:FormSubgeneroComponent},
+
     { path: 'generos', component:GeneroComponent},
     { path:'crud-generos', component:FormGeneroComponent},
     { path:'crud-generos/:id', component:FormGeneroComponent},
  
+
     { path: 'categorias', component:CategoriaComponent},
     { path:'crud-categorias', component:FormCategoriaComponent},
     { path:'crud-categorias/:id', component:FormCategoriaComponent},
  
+    
     { path: 'generos-subgeneros', component:GenSubComponent},
     { path:'registrar-generos-subgeneros', component:FormGenSubComponent},
  
