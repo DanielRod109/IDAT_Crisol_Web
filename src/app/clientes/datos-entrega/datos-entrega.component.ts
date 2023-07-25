@@ -17,7 +17,7 @@ export class DatosEntregaComponent implements OnInit {
  
   carrito: Productos[] = [];
 
-  entregaADomicilio = !false;
+  entregaADomicilio = false;
 
   myCart$ = this.tiendaService.myCart$;
 

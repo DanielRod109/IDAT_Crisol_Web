@@ -4,10 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './admin/menu/menu.component';
-//import { CategoriaComponent } from './admin/categoria/categoria.component';
-//import { LoginComponent } from './clientes/login/login.component';
-//import { RegistroComponent } from './clientes/registro/registro.component';
-//import { PrincipalComponent } from './clientes/principal/principal.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -25,13 +21,11 @@ import { AsignarMotorizadoComponent } from './admin/asignar-motorizado/asignar-m
 import { MotorizadoComponent } from './admin/motorizado/motorizado.component';
 import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizado-registrar-editar/motorizado-registrar-editar.component';
 import { AuthguardGuard } from './seguridad/authguard.guard';
-import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.component';
 import { ListaCompraComponent } from './clientes/lista-compra/lista-compra.component';
-
+import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.component';
 //PAYPAL
 import { NgxPayPalModule } from 'ngx-paypal';
-import { ItemsCarritoComponent } from './clientes/items-carrito/items-carrito.component';
-import { ItemProductoComponent } from './clientes/productos/item-producto/item-producto.component';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +36,6 @@ import { ItemProductoComponent } from './clientes/productos/item-producto/item-p
     HeaderComponent,
     CarritoComponent,
     ProductosComponent,
-    ProductoComponent,
     RegistrarComponent,
     EditarComponent,
     ProductoRegistrarEditarComponent,
@@ -52,12 +45,7 @@ import { ItemProductoComponent } from './clientes/productos/item-producto/item-p
     MotorizadoRegistrarEditarComponent,
     DatosEntregaComponent,
     ListaCompraComponent,
-    ItemsCarritoComponent,
-    ItemProductoComponent
-   // CategoriaComponent,
-   // LoginComponent,
-   // RegistroComponent,
-   // PrincipalComponent
+
   ],
   imports: [
     BrowserModule,

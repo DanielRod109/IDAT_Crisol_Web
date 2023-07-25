@@ -8,6 +8,7 @@ import { ProductoComponent } from './admin/producto/producto.component';
 import { RegistrarComponent } from './admin/producto/registrar/registrar.component';
 import { EditarComponent } from './admin/producto/editar/editar.component';
 import { PrincipalAdminComponent } from './admin/principal-admin/principal-admin.component';
+
 import { ProductoRegistrarEditarComponent } from './admin/producto/producto-registrar-editar/producto-registrar-editar.component';
 import { MotorizadoComponent } from './admin/motorizado/motorizado.component';
 import { MotorizadoRegistrarEditarComponent } from './admin/motorizado/motorizado-registrar-editar/motorizado-registrar-editar.component';

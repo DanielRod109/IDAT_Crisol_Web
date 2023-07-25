@@ -30,7 +30,7 @@
     <div class="cartTotal">
         <p class="cartTotal-total"> Total: S/. {{totalCart()}}</p>
     </div>
-    <button class="cart-btn" (click)="irDatosEntrega()" >Continuar con la compra</button>
+    <button class="cart-btn" [routerLink]="['/crisol/entrega']" >Continuar con la compra</button>
 </div>
   <!-- 
     <article>
