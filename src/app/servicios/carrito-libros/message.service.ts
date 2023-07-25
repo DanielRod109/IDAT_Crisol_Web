@@ -11,10 +11,12 @@ export class MessageService {
 
   constructor() { }
 
+  
   sendMessage(producto: Productos): void {
     this.message.next(producto);
     console.log("Mensaje enviado")
   }
+
 
   getMessage(): Observable<any> {
     console.log("Mensaje recibido")

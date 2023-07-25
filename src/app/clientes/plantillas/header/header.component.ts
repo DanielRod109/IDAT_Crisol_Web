@@ -15,9 +15,10 @@ export class HeaderComponent implements OnInit {
   showSubMenu: boolean = false;
 
 
+  myCart$ = this.tiendaService.myCart$;
   
-  
-  myCart = this.tiendaService.totalCarrito();
+
+
 
   constructor(private clienteService: ClienteServiceService, private tiendaService:TiendaService) { }
 

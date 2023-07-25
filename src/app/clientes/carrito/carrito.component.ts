@@ -5,6 +5,7 @@ import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { Productos } from 'src/app/clases/producto';
 import { ItemsCarrito } from 'src/app/clases/items-carrito';
 import { environment } from 'src/app/clases/paypal';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
@@ -12,69 +13,72 @@ import { environment } from 'src/app/clases/paypal';
 })
 export class CarritoComponent implements OnInit {
 
-  cartItems:any[] = [];
-  total = 0;
-
   public payPalConfig?: IPayPalConfig;
 
+  /*
+  cartItems:any[] = [];
+  total = 0;
+  */
   constructor(
-
     private tiendaService: TiendaService,
-    private messageService: MessageService,
+    private router: Router
   ) { }
 
 
   ngOnInit(): void {
-    
-    this.initConfig();
-    if (this.tiendaService.existsCart()) {
-      this.cartItems = this.tiendaService.getCart();
-    } 
-    this.getItem();
-    this.total = this.getTotal();
   }
 
-  //------
-  /*
+ 
   myCart$ = this.tiendaService.myCart$;
 
   viewCart: boolean = false;
+
   totalProductos(precio: number, cantidad: number) {
     return precio * cantidad
   }
-
   eliminarProducto(id: number) {
     this.tiendaService.eliminarProducto(id);
+  }
+  actSumProducto(id:number){
+    this.tiendaService.sumarCantidad(id);
+  }
+
+  actRestProducto(id:number){
+    this.tiendaService.restarCantidad(id)
+  }
+
+
+  irDatosEntrega(){
+    this.router.navigate(['crisol/entrega'])
   }
 
   actUnidades(operacion: string, id: number) {
     const product = this.tiendaService.findPById(id)
     if (product) {
       if (operacion === 'minus' && product.stock > 0) {
-        product.stock = product.stock - 1;
+        this.actRestProducto(id);
       }
       if (operacion === 'add') {
-        product.stock = product.stock + 1;
+        this.actSumProducto(id);
       }
       if (product.stock === 0) {
         this.eliminarProducto(id);
       }
     }
-  }
+  }  
   totalCart() {
     const r = this.tiendaService.totalCart();
     return r;
   }
-  */
-  //------
-
+  
   //NUEVO CARRITO
+  /*
   getItem(): void {
     
     this.messageService.getMessage().subscribe((product: Productos) => {
       let exists = false;
       this.cartItems.forEach(item => {
-        if (item.idLibro === product.id_libro) {
+        if (item.id_libro === product.id_libro) {
           exists = true;
           item.cantidad++;
         }
@@ -93,12 +97,23 @@ export class CarritoComponent implements OnInit {
       this.cartItems.push(cartItem);
     });
   }
-
-  
+  */
+/*
+    getTotal(): number {
+      let total = 0;
+      this.myCart$.subscribe((p: Productos[]) => {
+      p.forEach(item => {
+        total += item.stock * item.precio;
+      });
+    });
+      return +total.toFixed(2);
+    }
+*/
+  /*
   getItemsList(): any[] {
     const items: any[] = [];
     let item = {};
-    this.cartItems.forEach((it: ItemsCarrito) => {
+    this.myCart$.forEach((it: Productos) => {
       item = {
         name: it.nombreproducto,
         quantity: it.cantidad,
@@ -108,7 +123,10 @@ export class CarritoComponent implements OnInit {
     });
     return items;
   }
+  */
 
+
+/*
   getTotal(): number {
     let total = 0;
     this.cartItems.forEach(item => {
@@ -117,11 +135,7 @@ export class CarritoComponent implements OnInit {
     return +total.toFixed(2);
   }
 
-  emptyCart(): void {
-    this.cartItems = [];
-    this.total = 0;
-    this.tiendaService.clear();
-  }
+
 
   deleteItem(i: number): void {
     if (this.cartItems[i].cantidad > 1) {
@@ -132,7 +146,9 @@ export class CarritoComponent implements OnInit {
     this.total = this.getTotal();
     this.tiendaService.setCart(this.cartItems);
   }
+  */
 
+  /*
   //PAYPAL
     private initConfig(): void {
     this.payPalConfig = {
@@ -186,5 +202,5 @@ export class CarritoComponent implements OnInit {
         console.log('onClick', data, actions);
       },
     };
-  }
+  }*/
 }
