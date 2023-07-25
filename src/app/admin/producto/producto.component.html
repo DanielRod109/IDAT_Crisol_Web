@@ -1,40 +1,51 @@
-<!----
-<div class="card">
-    <div class="card-header">
-        <h2>Libros</h2>
-        <button class="btn btn-primary" [routerLink]="['/admin/principal/crud-producto']">
-            Registrar Libro
-          </button>
-    <div class="card-body">
-        <table class="table table-striped mt-4">
-            <thead class="table-light">
-                <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Peso</th>
-                    <th>Editorial</th>
-                    <th>Precio</th>
-                    <th>Publicación</th>
-                    <th>Autor</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let a of productos">
-                    <td>{{a.id_libro}}</td>
-                    <td>{{a.nombre}}</td>
-                    <td>{{a.peso}}</td>
-                    <td>{{a.editorial}}</td>
-                    <td>S/.{{a.precio}}</td>
-                    <td>{{a.aedicion}}</td>
-                    <td>{{a.autor}}</td>
-                    <td>
-                        <button [routerLink]="['/admin/principal/crud-producto',a.id_libro]"  class="btn btn-warning m-lg-2">Editar</button>
-                         <button class="btn btn-danger">Eliminar</button> 
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<div class="jumbotron text-white">
+    <h1 class="display-4">Productos</h1>
+</div>
+<div class="container-fluid">
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-10">
+            <div class="d-flex justify-content-end mb-3">
+                <button class="btn btn-primary" [routerLink]="['/admin/principal/crud-producto']">
+                    Registrar Libro
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped custom-table mt-3">
+                    <thead class="bg-secondary table-light">
+                        <tr>
+                            <th>Id</th>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Peso</th>
+                            <th>Editorial</th>
+                            <th>Precio</th>
+                            <th>Publicación</th>
+                            <th>Autor</th>
+                            <th>Subgenero</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of productos">
+                            <td>{{a.id_libro}}</td>
+                            <td><img src= "{{a.img}}"></td>
+                            <td>{{a.nombre}}</td>
+                            <td>{{a.peso}}</td>
+                            <td>{{a.editorial}}</td>
+                            <td>S/.{{a.precio}}</td>
+                            <td>{{a.aedicion}}</td>
+                            <td>{{a.nombre_autor}}</td>
+                            <td>{{a.subgenero}}</td>
+                            <td>
+                                <button type="button" name="button"  [routerLink]="['/admin/principal/crud-producto',a.id_libro]"
+                                class="btn btn-warning btn-sm"> <i class="fa-solid fa-pen"></i> </button>
+                                <!--- <button class="btn btn-danger">Eliminar</button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</div>  
--->
+</div>

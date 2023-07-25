@@ -2,110 +2,23 @@
   <nav>
     <ul>
       <li class="crisol"><a href="/">Crisol</a></li>
-      <li><a href="#">LOS MÁS VENDIDOS</a></li>
-      <li><a href="#">NOVEDADES</a></li>
-      <li class="dropdown">
-        <a class="menu-option">FICCIÓN</a>
+      <!-- Repite este bloque por cada categoría -->
+      <li *ngFor="let categoria of menuData" class="dropdown">
+        <a class="menu-option">{{categoria.nombre}}</a>
         <ul class="submenu">
-          <li class="submenu-group">
-            <h4>Resaltados</h4>
+          <li *ngFor="let genero of categoria.generos" class="submenu-group">
+            <h4>{{genero.nombre}}</h4>
             <ul class="submenu-list">
-              <li><a href="#">Los más vendidos</a></li>
-              <li><a href="#">Voces Peruanas</a></li>
-              <li><a href="#">Vargas Llosa</a></li>
-              <li><a href="#">Articulos del mes</a></li>
-            </ul>
-          </li>
-          <li class="submenu-group">
-            <h4>Narrativa</h4>
-            <ul class="submenu-list">
-              <li><a href="#">Literatura clásica</a></li>
-              <li><a href="#">Literatura Latinoamericana</a></li>
-              <li><a href="#">Literatura Peruana</a></li>
-              <li><a href="#">Literatura Universal</a></li>
-              <li><a href="#">Literatura en otros idiomas</a></li>
-              <li><a href="#">Literatura de viajes</a></li>
-            </ul>
-          </li>
-          <li class="submenu-group">
-            <h4>Novelas</h4>
-            <ul class="submenu-list">
-              <li><a href="#">Ciencia ficción</a></li>
-              <li><a href="#">Fantasía</a></li>
-              <li><a href="#">Novela histórica</a></li>
-              <li><a href="#">Novela negra</a></li>
-              <li><a href="#">Romántica y erótica</a></li>
-              <li><a href="#">Terror</a></li>
-            </ul>
-          </li>
-          <li class="submenu-group">
-            <h4>Mangas</h4>
-            <ul class="submenu-list">
-              <li><a href="#">Adulto</a></li>
-              <li><a href="#">Seinen</a></li>
-              <li><a href="#">Shojo</a></li>
-              <li><a href="#">Shonen</a></li>
-            </ul>
-          </li>
-          <li class="submenu-group">
-            <h4>Lírica y drama</h4>
-            <ul class="submenu-list">
-              <li><a href="#">Poesía</a></li>
-              <li><a href="#">Teatro</a></li>
+              <li *ngFor="let subgenero of genero.subgeneros">
+                <a [routerLink]="['/crisol']" [queryParams]="{subgenero: subgenero}">{{subgenero}}</a>
+              </li>
             </ul>
           </li>
         </ul>
       </li>
-      <li class="dropdown">
-        <a class="menu-option">NO FICCIÓN</a>
-        <ul class="submenu">
-          <li class="submenu-group">
-            <h4>Resaltados</h4>
-            <ul class="submenu-list">
-              <li><a href="#">Los más vendidos</a></li>
-              <li><a href="#">Actualidad Peruanas</a></li>
-              <li><a href="#">Articulos del mes</a></li>
-              <li><a href="#">Rosa María Cifuentes</a></li>
-            </ul>
-          </li>
-          <li class="submenu-group">
-            <h4>Libros de no ficción</h4>
-            <ul class="submenu-list">
-              <li><a href="#">Ciencias</a></li>
-              <li><a href="#">Humanidades</a></li>
-              <li><a href="#">Ciencias sociales</a></li>
-              <li><a href="#">Desarrollo personal y salud</a></li>
-              <li><a href="#">Empresa</a></li>
-            </ul>
-          </li>
-          <li class="submenu-group">
-            <h4>--</h4>
-            <ul class="submenu-list">
-              <li><a href="#">Artes e Ilustrados</a></li>
-              <li><a href="#">Escolar y plan lector</a></li>
-              <li><a href="#">Gastronomía</a></li>
-              <li><a href="#">Libro Técnico</a></li>
-              <li><a href="#">Deportes</a></li>
-            </ul>
-          </li>
-          <li class="submenu-group">
-            <h4>--</h4>
-            <ul class="submenu-list">
-              <li><a href="#">Obras de consulta</a></li>
-              <li><a href="#">Turismo</a></li>
-              <li><a href="#">Libros en inglés</a></li>
-              <li><a href="#">Miscelánea</a></li>
-              <li><a href="#">Enseñanza de idiomas</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><a href="#">INFANTIL</a></li>
-      <li><a href="#">JUVENIL</a></li>
-      <li><a href="#">AUDIOLIBROS</a></li>
-      <li><a href="#">EBOOKS</a></li>
-      <li><a href="#">SMART PLAY</a></li>
-      <li><a href="admin/principal">LIBROS A PEDIDOS</a></li>
+  <!-- Fin de la repetición -->
+<!--
+      <li><a href="admin/principal">LIBROS A PEDIDOS</a></li>-->
       <li class="nav-item login" *ngIf="isAuthenticated()">
         <button class="btn btn-link text-black" (click)="toggleMenu()">
           <i class="fas fa-user"></i> {{ clienteNombre}}

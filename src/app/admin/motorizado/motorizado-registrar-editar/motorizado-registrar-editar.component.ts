@@ -22,35 +22,51 @@ export class MotorizadoRegistrarEditarComponent implements OnInit {
     this.activatedRoute.params.subscribe(params =>{
       let id = params['id']
       if(id){
-        this.motorizadoService.obtenerMotorizado(id).subscribe((motorizado) => this.motorizado = motorizado)
+        this.motorizadoService.obtenerMotorizado(id).subscribe
+        ((motorizado) => this.motorizado = motorizado)
       }
     })
   }
 
   public createMotorizado(): void{
-    this.irAListado();
+    //this.irAListado();
     this.motorizadoService.registrarMotorizado(this.motorizado)
     .subscribe(
-      motorizado =>{
-        this.router.navigate([])
+      (motorizado) =>{
+        this.router.navigate(['admin/principal/motorizados']);
+        swal.fire(
+          'Éxito!',
+          'Motorizado creado correctamente',
+          'success'
+        )
+      },
+      (error) => {
+        console.error(error);
       }
     );
   }
 
 
   updateMotorizado(): void{
-    this.irAListado();
+    //this.irAListado();
     this.motorizadoService.actualizarMotorizado(this.motorizado)
     .subscribe(
-      motorizado => {
-        swal.fire('Motorizado Actualizado', `Libro ${motorizado.nombres} actualizado.`, 'success') 
-      } 
-    )
+      (motorizado) => {
+        this.router.navigate(['admin/principal/motorizados']);
+        swal.fire(
+          'Éxito!',
+         `Motorizado actualizado correctamente`, 
+         'success') 
+      } ,
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
-  irAListado(){
+ /* irAListado(){
     this.router.navigate(['admin/principal/motorizados'])
-  }
+  }*/
 
 
 

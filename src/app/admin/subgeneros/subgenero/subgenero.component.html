@@ -1,0 +1,35 @@
+<div class="jumbotron text-white">
+    <h1 class="display-4">Subgéneros</h1>
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center mt-3">
+      <div class="col-lg-10">
+        <div class="d-flex justify-content-end mb-3">
+          <button class="btn btn-primary" [routerLink]="['/admin/principal/crud-subgeneros']">
+            Registrar Subgéneros
+          </button>
+        </div>
+  
+        <div class="table-responsive">
+          <table class="table table-hover table-striped custom-table mt-3">
+            <thead class="bg-secondary table-light">
+              <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let subgenero of subgeneros" class="table-row">
+                <td>{{ subgenero.subgeneroId }}</td>
+                <td>{{ subgenero.nombre }}</td>
+                <td>
+                  <button type="button" name="button" [routerLink]="['/admin/principal/crud-subgeneros', subgenero.subgeneroId]" class="btn btn-warning btn-sm"> <i class="fa-solid fa-pen"></i> </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

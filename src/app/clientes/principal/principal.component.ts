@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Productos } from 'src/app/clases/producto';
 import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
 
@@ -9,6 +9,7 @@ import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
 })
 export class PrincipalComponent implements OnInit {
 
+  lastScrollTop: number = 0;
   //Carrito de Compras
 
   productos:Productos[]=[];
@@ -21,4 +22,18 @@ export class PrincipalComponent implements OnInit {
     })
   }
 
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const navbar = document.getElementById('navbar');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > this.lastScrollTop) {
+      // Cuando se hace scroll hacia abajo
+      navbar?.classList.add('hidden');
+    } else {
+      // Cuando se hace scroll hacia arriba
+      navbar?.classList.remove('hidden');
+    }
+    this.lastScrollTop = scrollTop;
+  }
+  
 }

@@ -1,0 +1,31 @@
+<div class="jumbotron text-white">
+    <h1 class="display-4">Géneros - Subgéneros</h1>
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center mt-3">
+      <div class="col-lg-10">
+        <div class="d-flex justify-content-end mb-3">
+          <button class="btn btn-primary" [routerLink]="['/admin/principal/registrar-generos-subgeneros']">
+            Registrar
+          </button>
+        </div>
+  
+        <div class="table-responsive">
+          <table class="table table-hover table-striped custom-table mt-3">
+            <thead class="bg-secondary table-light">
+              <tr>
+                <th>Género</th>
+                <th>Subgénero</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let gensub of generoSubgeneroData" class="table-row">
+                <td>{{ gensub.genero }}</td>
+                <td>{{ gensub.subgenero }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

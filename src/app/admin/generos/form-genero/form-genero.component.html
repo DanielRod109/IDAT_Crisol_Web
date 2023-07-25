@@ -1,0 +1,58 @@
+<div class="container">
+    <h1 class="text-center p-3">
+      {{ genero.generoId ? 'Edición de género' : 'Registro de género' }}
+    </h1>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form  class="custom-form">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" maxlength="30" [(ngModel)]="genero.nombre"  name="nombre" required>
+            <div *ngIf="genero.nombre === ''" class="error-message">
+              Campo requerido*
+            </div>
+          </div>
+  
+          <div class="form-group" *ngIf="genero.generoId">
+            <label for="estado">Estado del género</label>
+            <select  [(ngModel)]="genero.estado" name="estado" class="form-select">
+              <option  value="" disabled="disabled">Seleccione Estado</option>
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
+            <div *ngIf="genero.estado === ''" class="error-message">
+              Campo requerido*
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="categoria">Categoría</label>
+            <select  [(ngModel)]="seleccionCategoria" name="categoriaId" class="form-select">
+              <option value="" disabled="disabled" >Seleccionar Categoría</option>
+              <option *ngFor="let categoria of categorias" [value]="categoria.categoriaId">{{ categoria.nombre }}</option>
+            </select>
+            <div *ngIf="seleccionCategoria === 0" class="error-message">
+              Seleccione una Categoría.
+            </div>
+          </div>
+
+
+  
+          <div class="form-group">
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary mr-2 custom-button" (click)="genero.generoId ? editarGenero() : crearGenero()">
+                <ng-container *ngIf="genero.generoId; else createIcon">
+                  <i class="fa-solid fa-pen"></i>  Editar
+                </ng-container>
+                <ng-template #createIcon>
+                  <i class="fa-solid fa-check"></i>  Crear
+                </ng-template>
+              </button>
+              <button type="button" name="button" [routerLink]="['/admin/principal/generos']" class="btn btn-secondary">
+                <i class="fa-solid fa-xmark"></i>  Cancelar
+              </button>
+            </div>
+           </div>
+        </form>
+      </div>
+    </div>
+  </div>

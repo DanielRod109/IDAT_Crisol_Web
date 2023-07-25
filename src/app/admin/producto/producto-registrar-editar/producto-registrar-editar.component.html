@@ -1,12 +1,7 @@
 <div class="col-md-6 offset-md-3">
-    <h3 class="text-center" *ngIf="!producto.id_libro else elseTitulo">
-        Crear Libro
-    </h3>
-    <ng-template #elseTitulo>
-        <h3 class="text-center">
-            Editar Libro
-        </h3>
-    </ng-template>
+    <h1 class="text-center p-3">
+        {{ producto.id_libro ? 'Edición de producto' : 'Registro de producto' }}
+    </h1>
     <form>
         <div class="row">
             <div class="col-md-6">
@@ -86,10 +81,19 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Autor : </label>
-                    <input type="text" class="form-control" id="autor" [(ngModel)]="producto.autor" 
-                    name="autor" required
-                         #autor="ngModel">
+                    <input type="text" class="form-control" id="autor" [(ngModel)]="producto.nombre_autor" required
+                        name="autor">
                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="subgenero">Subgenero</label>
+            <select [(ngModel)]="seleccionSubgenero" name="subgeneroId" class="form-select form-control">
+                <option value="" disabled="disabled">Seleccionar Subgenero</option>
+                <option *ngFor="let subg of subgenero" [value]="subg.subgeneroId">{{ subg.nombre }}</option>
+            </select>
+            <div *ngIf="seleccionSubgenero === 0" class="error-message">
+                Seleccione un Subgenero.
             </div>
         </div>
 
@@ -103,12 +107,12 @@
 
         <div class="text-center">
             <button class="btn btn-success" role="button"
-            (click)='createLibro()' *ngIf="!producto.id_libro else elseBlock">Crear</button>
+            (click)='guardarProducto()' *ngIf="!producto.id_libro else elseBlock">Crear</button>
             <span>&nbsp;</span>
             <button role="button" [routerLink]="['/admin/principal/productos']" class="btn btn-secondary">Cancelar</button>
             <ng-template #elseBlock>
                 <button class="btn btn-success" role="button"
-                (click)='updateLibro()'>Editar</button>
+                (click)='editarProducto()'>Editar</button>
             </ng-template>
         </div>
     </form>

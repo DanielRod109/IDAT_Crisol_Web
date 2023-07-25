@@ -14,26 +14,36 @@
                     <label>Nombres : </label>
                     <input type="text" class="form-control" id="nombre-motorizado" [(ngModel)]="motorizado.nombres" name="nombre-motorizado"
                         required placeholder="">
+                        <div *ngIf="motorizado.nombres === ''" class="error-message">
+                            Campo requerido*
+                          </div>
                 </div>
 
                 <div class="form-group">
                     <label>Apellidos : </label>
                     <input type="text" class="form-control" id="apelidos-motorizado" [(ngModel)]="motorizado.apellidos" 
                         name="apelidos-motirzado">
+                        <div *ngIf="motorizado.apellidos === ''" class="error-message">
+                            Campo requerido*
+                          </div>
                 </div>
             </div>
             <div class="col-md-6">
 
                 <div class="form-group">
                     <label>DNI : </label>
-                    <input type="text" class="form-control" id="dni-motorizado" [(ngModel)]="motorizado.dni" name="dni-motorizado" 
+                    <input type="text" class="form-control" id="dni-motorizado"  maxlength="8" [(ngModel)]="motorizado.dni" name="dni-motorizado" 
                         placeholder="" #peso="ngModel" (keydown)="validarNumerico($event)">
-                </div>
+                       
+                    </div>
 
                 <div class="form-group">
                     <label>Placa : </label>
                     <input type="text" class="form-control" id="placa-motorizado" [(ngModel)]="motorizado.placa" name="placa-motorizado"
-                        required placeholder="" #alto="ngModel">
+                        required placeholder="" #alto="ngModel" maxlength="7">
+                        <div *ngIf="motorizado.placa === ''" class="error-message">
+                            Campo requerido*
+                          </div>
                 </div>
             </div>
         </div>

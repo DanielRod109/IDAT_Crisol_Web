@@ -1,42 +1,85 @@
 <div class="content-container">
+
     <div class="search-container">
+
         <div class="search-input">
+
             <input type="text" class="form-control" [(ngModel)]="nombre"
                 placeholder="Busca por nombre, autor o editorial">
+
         </div>
+
         <div class="search-button">
+
             <button class="btn btn-primary" (click)="buscarPorNombreAutorEditorial(nombre)">
+
                 <i class="fa-solid fa-magnifying-glass"></i></button>
+
         </div>
+
     </div>
+
+
+
 
 
     <div class="alert alert-danger mt-2" *ngIf="errorStatus">
+
         <p>{{ errorMsj }}</p>
+
     </div>
 
-    <br>
+
+
+
     <br>
 
+    <br>
+
+
+
+
     <div class="products-container">
+
         <article class="product" *ngFor="let product of productos">
+
             <div class="product-image">
-                <img src= "{{product.img}}">
+
+                <img src="{{product.img}}">
+
             </div>
+
             <div class="product-header">
+
                 <h4 class="product-header-title"> {{product.nombre}}</h4>
-                <p>{{product.autor}}</p>
+
+                <p>{{product.nombre_autor}}</p>
+
                 <p>S/. {{ product.precio }}</p>
-                
+
+
+
             </div>
+
             <div class="product-footer">
+
                 <button class="product-footer-button" (click)="addToCart(product)">
+
                     Añadir al carrito
+
                 </button>
-            </div>            
+
+            </div>
+
             <!--
+
         <app-item-producto> [product]="product"</app-item-producto>
+
             -->
+
         </article>
+
+
+
 
     </div>

@@ -13,6 +13,16 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+.fa-angle-right
+{
+    position: absolute;
+    right: 0;
+  }
+.fa-angle-down {
+    position: absolute;
+    right: 0;
+  }
+
 .sideBar {
     position: relative;
     z-index: 20;

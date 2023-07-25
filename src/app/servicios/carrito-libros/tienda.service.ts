@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { ItemsCarrito } from 'src/app/clases/items-carrito';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Productos } from 'src/app/clases/producto';
 
 @Injectable({
@@ -17,8 +16,9 @@ export class TiendaService {
   constructor(private httpClient: HttpClient) { }
 
   obtenerProductos(): Observable<Productos[]> {
-    const response = this.httpClient.get<Productos[]>(`${this.baseUrl}`);
-    return response
+    return this.httpClient.get<Productos[]>(this.baseUrl).pipe(
+      map(response=> response as Productos[])
+    );
   }
 
 

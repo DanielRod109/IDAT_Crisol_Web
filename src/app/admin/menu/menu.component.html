@@ -6,26 +6,75 @@
         <li [ngClass]="{ 'selected': isSelected('admin/principal') }" (click)="selectOption('admin/principal')">
           <i class="fas fa-home"></i><label>Home</label>
         </li>
-        <li [ngClass]="{ 'selected': isSelected('admin/principal/productos') }" (click)="selectOption('admin/principal/productos')"
-        *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
-          <i class="fa-solid fa-book"></i><a href="admin/principal/productos">Productos</a>
+        <!--Opcion Productos-->
+        <li (click)="toggleSubopciones()"
+          *ngIf="rolUsuario =='Administrador' || rolUsuario =='Almacén'|| rolUsuario =='Compras'">
+          <i class="fa-solid fa-grip-lines"></i><label>Productos</label>
+          <i class="fa-solid"
+            [ngClass]="{'fa-angle-down': subopcionesProducto, 'fa-angle-right': !subopcionesProducto}"></i>
         </li>
-        <li [ngClass]="{ 'selected': isSelected('admin/principal/usuarios') }" (click)="selectOption('admin/principal/usuarios')"
-        *ngIf="rolUsuario =='Administrador'">
-          <i class="fa-solid fa-users"></i><a href="admin/principal/usuarios">Usuarios</a>
+        <!--Subpciones de Productos-->
+        <ul *ngIf="subopcionesProducto">
+
+          <li [ngClass]="{ 'selected': isSelected('admin/principal/productos') }"
+            (click)="selectOption('admin/principal/productos')"
+            *ngIf="rolUsuario =='Administrador' || rolUsuario =='Almacén'">
+            <i class="fa-solid fa-book"></i><a>Libros</a>
+          </li>
+
+          <li [ngClass]="{ 'selected': isSelected('admin/principal/categorias') }"
+          (click)="selectOption('admin/principal/categorias')"
+          *ngIf="rolUsuario =='Administrador' || rolUsuario =='Almacén'">
+          <i class="fa-solid fa-layer-group"></i><a>Categorías</a>
         </li>
-        <li [ngClass]="{ 'selected': isSelected('admin/principal/ventas') }" (click)="selectOption('admin/principal/ventas')"
-        *ngIf="rolUsuario =='Ventas' || rolUsuario =='Administrador'">
-          <i class="fa-solid fa-hand-holding-dollar"></i><a href="admin/principal/ventas">Ventas</a>
+
+          <li [ngClass]="{ 'selected': isSelected('admin/principal/generos') }"
+            (click)="selectOption('admin/principal/generos')"
+            *ngIf="rolUsuario =='Administrador' || rolUsuario =='Almacén'">
+            <i class="fa-solid fa-mars-stroke-right"></i><a>Géneros</a>
+          </li>
+
+          <li [ngClass]="{ 'selected': isSelected('admin/principal/subgeneros') }"
+            (click)="selectOption('admin/principal/subgeneros')"
+            *ngIf="rolUsuario =='Administrador' || rolUsuario =='Almacén'">
+            <i class="fa-solid fa-mars-stroke-right"></i><a>Subgeneros</a>
+          </li>
+
+          <li [ngClass]="{ 'selected': isSelected('admin/principal/generos-subgeneros') }"
+            (click)="selectOption('admin/principal/generos-subgeneros')"
+            *ngIf="rolUsuario =='Administrador' || rolUsuario =='Almacén'">
+            <i class="fa-solid fa-mars-stroke-right"></i><a>Generos-Subgeneros</a>
+          </li>
+
+
+        </ul>
+        <!-------------------------->
+
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/usuarios') }"
+          (click)="selectOption('admin/principal/usuarios')" *ngIf="rolUsuario =='Administrador'">
+          <i class="fa-solid fa-users"></i><a>Usuarios</a>
         </li>
-        <li [ngClass]="{ 'selected': isSelected('admin/principal/compras') }" (click)="selectOption('admin/principal/compras')"
-        *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
-          <i class="fa-solid fa-cart-shopping"></i><a href="admin/principal/compras">Compras</a>
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/ventas') }"
+          (click)="selectOption('admin/principal/ventas')"
+          *ngIf="rolUsuario =='Ventas' || rolUsuario =='Administrador'">
+          <i class="fa-solid fa-hand-holding-dollar"></i><a>Ventas</a>
         </li>
-        <li [ngClass]="{ 'selected': isSelected('admin/principal/almacen') }" (click)="selectOption('admin/principal/almacen')"
-        *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
-          <i class="fa-solid fa-warehouse"></i><a href="admin/principal/almacen">Almacén</a>
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/compras') }"
+          (click)="selectOption('admin/principal/compras')"
+          *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
+          <i class="fa-solid fa-cart-shopping"></i><a>Compras</a>
         </li>
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/almacen') }"
+          (click)="selectOption('admin/principal/almacen')"
+          *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
+          <i class="fa-solid fa-warehouse"></i><a>Almacén</a>
+        </li>
+
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/motorizados') }"
+          (click)="selectOption('admin/principal/motorizados')" *ngIf="rolUsuario =='Administrador'">
+          <i class="fa-solid fa-motorcycle"></i><a>Motorizados</a>
+        </li>
+
         <li>
           <i class="fa-solid fa-right-from-bracket"></i><a (click)="onLogout()">Cerrar Sesión</a>
         </li>
@@ -36,7 +85,7 @@
     <div class="content">
       <header class="menu-header">
         <div></div>
-        <h1 *ngIf="isAuthenticated()">{{ nombres }}    |    {{ rolUsuario }}</h1>
+        <h1 *ngIf="isAuthenticated()">{{ nombres }} | {{ rolUsuario }}</h1>
         <img src="../../../assets/usuario.jpeg" />
       </header>
       <div class="content-data">

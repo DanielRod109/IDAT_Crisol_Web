@@ -1,0 +1,41 @@
+<div class="container">
+    <h1 class="text-center p-3"> Registrar Género - Subgénero </h1>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form  class="custom-form">
+            <div class="form-group">
+                <label for="genero">Género</label>
+                <select  [(ngModel)]="seleccionGenero" name="generoId" class="form-select">
+                  <option value="" disabled="disabled" >Seleccionar Género</option>
+                  <option *ngFor="let genero of generos" [value]="genero.generoId">{{ genero.nombre }}</option>
+                </select>
+                <div *ngIf="seleccionGenero === 0" class="error-message">
+                  Seleccione un Género.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="subgenero">Subgénero</label>
+                <select  [(ngModel)]="seleccionSubgenero" name="subgeneroId" class="form-select">
+                  <option value="" disabled="disabled" >Seleccionar Subgénero</option>
+                  <option *ngFor="let subgenero of subgeneros" [value]="subgenero.subgeneroId">{{ subgenero.nombre }}</option>
+                </select>
+                <div *ngIf="seleccionSubgenero === 0" class="error-message">
+                  Seleccione un Subgénero.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="d-flex justify-content-end">
+                  <button class="btn btn-primary mr-2 custom-button" (click)="crearGeneroSubgenero()">
+                     <i class="fa-solid fa-check"></i>  Crear
+                  </button>
+                  <button type="button" name="button" [routerLink]="['/admin/principal/generos-subgeneros']" class="btn btn-secondary">
+                    <i class="fa-solid fa-xmark"></i>  Cancelar
+                  </button>
+                </div>
+               </div>
+            </form>
+          </div>
+        </div>
+      </div>
