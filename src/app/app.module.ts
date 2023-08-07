@@ -42,6 +42,8 @@ import { ListaCompraComponent } from './clientes/lista-compra/lista-compra.compo
 //PAYPAL
 import { NgxPayPalModule } from 'ngx-paypal';
 import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.component';
+import { FormClienteComponent } from './admin/clientes/form-cliente/form-cliente.component';
+import { ClienteComponent } from './admin/clientes/cliente/cliente.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.co
     MotorizadoComponent,
     MotorizadoRegistrarEditarComponent,
     ListaCompraComponent,
-    DatosEntregaComponent
+    DatosEntregaComponent,
+    FormClienteComponent,
+    ClienteComponent
    // CategoriaComponent,
    // LoginComponent,
    // RegistroComponent,

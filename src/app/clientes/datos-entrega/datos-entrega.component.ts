@@ -17,7 +17,14 @@ export class DatosEntregaComponent implements OnInit {
  
   carrito: Productos[] = [];
 
-  entregaADomicilio = !false;
+  entregaADomicilio: boolean = true;
+
+  direccion: string = '';
+
+  telefono: string = '';
+
+ 
+
 
   myCart$ = this.tiendaService.myCart$;
 
@@ -52,6 +59,19 @@ export class DatosEntregaComponent implements OnInit {
     });
   }
   */
+
+  limpiarFormulario() {
+
+    if (!this.entregaADomicilio) {
+
+      this.direccion = '';
+
+      this.telefono = '';
+
+    }
+
+  }
+
   totalCart() {
     const r = this.tiendaService.totalCart();
     return r;

@@ -49,7 +49,7 @@ export class CarritoComponent implements OnInit {
 
 
   irDatosEntrega(){
-    this.router.navigate(['crisol/datos-entrega'])
+    this.router.navigate(['crisol/cliente/datos-entrega'])
   }
 
   actUnidades(operacion: string, id: number) {

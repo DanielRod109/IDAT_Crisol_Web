@@ -1,8 +1,11 @@
+<div class="d-flex align-items-center justify-content-center" style="height: 100px;"  *ngIf="(myCart$ | async)?.length === 0">
 
-<div *ngIf="(myCart$ | async)?.length === 0">
     <br>
+
     <h4>Tu carrito esta vacío</h4>
+
     <br>
+
 </div>
 
 <div class="productCart-wrapper" *ngIf="(myCart$ | async)?.length !== 0">

@@ -1,0 +1,87 @@
+<div class="container">
+    <h1 class="text-center p-3">
+      {{ cliente.clienteId ? 'Edición de cliente' : 'Registro de cliente' }}
+    </h1>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form  class="custom-form">
+          <div class="form-group">
+            <label for="dni">DNI</label>
+            <input type="text" maxlength="8" [(ngModel)]="cliente.dni" (keydown)="validarNumerico($event)" name="dni" required>
+            <div *ngIf="cliente.dni === ''" class="error-message">
+              Campo requerido*
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="nombres">Nombre</label>
+            <input type="text" maxlength="30" [(ngModel)]="cliente.nombres"  name="nombres" required>
+            <div *ngIf="cliente.nombres === ''" class="error-message">
+              Campo requerido*
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" maxlength="30" [(ngModel)]="cliente.apellidos"  name="apellidos" required>
+            <div *ngIf="cliente.apellidos === ''" class="error-message">
+              Campo requerido*
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" maxlength="9" [(ngModel)]="cliente.telefono" (keydown)="validarNumerico($event)" name="telefono" required>
+            <div *ngIf="cliente.telefono === ''" class="error-message">
+              Campo requerido*
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" maxlength="100" [(ngModel)]="cliente.direccion"  name="direccion" required>
+            <div *ngIf="cliente.direccion === ''" class="error-message">
+              Campo requerido*
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="!cliente.clienteId">
+            <label for="email">Email</label>
+            <input type="email" maxlength="30" [(ngModel)]="cliente.email"  name="email" required>
+            <div *ngIf="cliente.email === ''" class="error-message">
+              Campo requerido*
+            </div>
+          </div>
+          
+          
+          <div class="form-group" *ngIf="!cliente.clienteId">
+            <label for="password">Contraseña</label>
+            <input type="password" maxlength="10" [(ngModel)]="cliente.password"  name="password" required>
+            <div *ngIf="cliente.password === ''" class="error-message">
+              Campo requerido*
+            </div>
+            <div *ngIf="cliente.password && (cliente.password.length < 8 || cliente.password.length > 10)" class="error-message">
+              La contraseña debe tener entre 8 y 10 caracteres.
+            </div>
+          </div>
+          
+          
+  
+          <div class="form-group">
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary mr-2 custom-button" (click)="cliente.clienteId ? editarCliente() : crearCliente()">
+                <ng-container *ngIf="cliente.clienteId; else createIcon">
+                  <i class="fa-solid fa-pen"></i>  Editar
+                </ng-container>
+                <ng-template #createIcon>
+                  <i class="fa-solid fa-check"></i>  Crear
+                </ng-template>
+              </button>
+              <button type="button" name="button" [routerLink]="['/admin/principal/clientes']" class="btn btn-secondary">
+                <i class="fa-solid fa-xmark"></i>  Cancelar
+              </button>
+            </div>
+           </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoginInterface } from '../../clases/LoginInterface';
 import { RespuestaInterface } from 'src/app/clases/RespuestaLoginInterface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { Cliente } from 'src/app/clases/cliente';
 
 @Injectable({
@@ -54,9 +54,29 @@ export class ClienteServiceService {
     localStorage.removeItem('clienteNombre');
   }
 
+  listarCliente():Observable<Cliente[]>{
+    return this.http.get<Cliente[]>(this.url+"listar").pipe(
+      map(response=> response as Cliente[])
+    );
+  }
+
   createCliente(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>(this.url + "crear", cliente, { headers: this.httpHeaders });
   }
+
+  editarCliente(cliente: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(`${this.url}editar/${cliente.clienteId}`, cliente, { headers: this.httpHeaders });
+      
+  }
+
+  buscarCliente(id: number): Observable<Cliente> {
+    return this.http.get<Cliente>(`${this.url}buscar/${id}`);
+  }
+
+  eliminarCliente(id:number):Observable<Cliente>{
+    return this.http.delete<Cliente>(`${this.url}eliminar/${id}`,{headers:this.httpHeaders})
+  }
+
 
   isAuthenticated(): boolean {
     return this.clienteLogueado;

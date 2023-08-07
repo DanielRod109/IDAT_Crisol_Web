@@ -54,6 +54,11 @@
           (click)="selectOption('admin/principal/usuarios')" *ngIf="rolUsuario =='Administrador'">
           <i class="fa-solid fa-users"></i><a>Usuarios</a>
         </li>
+        <li [ngClass]="{ 'selected': isSelected('admin/principal/clientes') }"
+        (click)="selectOption('admin/principal/clientes')" 
+        *ngIf="rolUsuario =='Administrador'|| rolUsuario =='Ventas'">
+        <i class="fa-solid fa-users"></i><a>Clientes</a>
+      </li>
         <li [ngClass]="{ 'selected': isSelected('admin/principal/ventas') }"
           (click)="selectOption('admin/principal/ventas')"
           *ngIf="rolUsuario =='Ventas' || rolUsuario =='Administrador'">
