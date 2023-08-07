@@ -14,15 +14,20 @@ export class ClienteServiceService {
 
   private clienteLogueado: boolean = false;
   private clienteNombre: string | null = null;
+  private clienteId: number | null = null;
 
   constructor(private http: HttpClient) {
     const isLoggedInString = localStorage.getItem('clienteLogueado');
     const clienteNombreString = localStorage.getItem('clienteNombre');
+    const clienteIdNumber = localStorage.getItem('clienteId')
     if (isLoggedInString) {
       this.clienteLogueado = JSON.parse(isLoggedInString);
     }
     if (clienteNombreString) {
       this.clienteNombre = clienteNombreString;
+    }
+    if (clienteIdNumber){
+      this.clienteId = parseInt(clienteIdNumber);
     }
   }
 
@@ -35,8 +40,10 @@ export class ClienteServiceService {
         if (respuesta.message == "Inicio de sesión exitoso"){
             this.clienteLogueado = true;
             this.clienteNombre = respuesta.nombreCliente;
+            this.clienteId = respuesta.id;
             localStorage.setItem('clienteLogueado', JSON.stringify(this.clienteLogueado));
             localStorage.setItem('clienteNombre', this.clienteNombre);
+            localStorage.setItem('clienteId', JSON.stringify(this.clienteId));
           }
         })
       );
@@ -50,8 +57,10 @@ export class ClienteServiceService {
   logout() {
     this.clienteLogueado = false;
     this.clienteNombre = null;
+    this.clienteId = null;
     localStorage.setItem('clienteLogueado', JSON.stringify(this.clienteLogueado));
     localStorage.removeItem('clienteNombre');
+    localStorage.removeItem('clienteId');
   }
 
   createCliente(cliente: Cliente): Observable<Cliente> {
@@ -64,5 +73,9 @@ export class ClienteServiceService {
 
   getClienteNombre(): string | null {
     return this.clienteNombre;
+  }
+
+  getClienteId(): number | null {
+    return this.clienteId;
   }
 }

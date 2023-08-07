@@ -11,6 +11,9 @@ export class TiendaService {
 
   baseUrl: string = 'http://localhost:8080/crisol/libro/listar'
 
+
+  regUrl: string = 'http://localhost:8080/crisol/venta/registrar'
+
   private myList: Productos[] = [];
 
   constructor(private httpClient: HttpClient) { }
@@ -95,6 +98,9 @@ restarCantidad(id: number): void {
     return total;
   }
 
+
+
+  
   
 
   

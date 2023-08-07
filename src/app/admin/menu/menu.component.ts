@@ -17,6 +17,9 @@ export class MenuComponent implements OnInit{
 
   subopcionesProducto: boolean = false;
 
+  subopcionesVenta: boolean = false;
+
+
   constructor(private usuarioService: UsuarioService, private router: Router){}
 
 
@@ -57,5 +60,16 @@ toggleSubopciones() {
     this.subopcionesProducto = !this.subopcionesProducto;
   }
 }
+
+// Función para cambiar el estado del menú desplegable al hacer clic en "Productos"
+toggleSubopcionesVenta() {
+  if (this.rolUsuario === 'Administrador' || this.rolUsuario === 'Ventas') {
+    this.subopcionesVenta = !this.subopcionesVenta;
+  }
+}
+
+
+
+
 
 }

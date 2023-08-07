@@ -25,7 +25,11 @@
           <i class="fas fa-angle-down"></i>
         </button>
         <div class="user-menu" *ngIf="showMenu">
-          <button class="btn btn-secondary" (click)="onLogout()">Cerrar sesión</button>
+          <button class="btn btn-secondary" [routerLink]="['/'] " (click)="onLogout()">Cerrar sesión</button>
+        </div>
+        <br>
+        <div class="user-menu" *ngIf="showMenu">
+          <button class="btn btn-secondary" [routerLink]="['/crisol/cliente/compras'] ">Mis compras</button>
         </div>
       </li>
       <li class="nav-item login" *ngIf="!isAuthenticated()">

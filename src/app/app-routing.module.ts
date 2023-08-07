@@ -7,8 +7,6 @@ import { PrincipalComponent } from'./clientes/principal/principal.component';
 import { LoginComponent } from './clientes/login/login.component';
 import { RegistroComponent } from './clientes/registro/registro.component';
 import { ProductoComponent } from './admin/producto/producto.component';
-import { RegistrarComponent } from './admin/producto/registrar/registrar.component';
-import { EditarComponent } from './admin/producto/editar/editar.component';
 import { PrincipalAdminComponent } from './admin/principal-admin/principal-admin.component';
 import { ProductoRegistrarEditarComponent } from './admin/producto/producto-registrar-editar/producto-registrar-editar.component';
 import { UsuarioComponent } from './admin/usuarios/usuario/usuario.component';
@@ -28,6 +26,8 @@ import { GenSubComponent } from './admin/generos-subgeneros/gen-sub/gen-sub.comp
 import { FormGenSubComponent } from './admin/generos-subgeneros/form-gen-sub/form-gen-sub.component';
 import { AsignarMotorizadoComponent } from './admin/asignar-motorizado/asignar-motorizado.component';
 import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.component';
+import { ListaCompraComponent } from './clientes/lista-compra/lista-compra.component';
+import { ElegirMotorizadoComponent } from './admin/asignar-motorizado/elegir-motorizado/elegir-motorizado.component';
  
 const routes: Routes = [
   {
@@ -60,6 +60,12 @@ const routes: Routes = [
   {
     path: 'crisol/cliente/entrega',
     component: DatosEntregaComponent
+  },
+
+  //Lista de compras Cliente
+  {
+    path: 'crisol/cliente/compras',
+    component: ListaCompraComponent
   },
  
   //ruta para el menú backoffice
@@ -106,9 +112,8 @@ const routes: Routes = [
     { path:'crud-motorizado', component:MotorizadoRegistrarEditarComponent},
     { path:'crud-motorizado/:id',component:MotorizadoRegistrarEditarComponent},
     //Asignar Motorizado
-    { path:'asignar-motorizado', component:AsignarMotorizadoComponent}
-
- 
+    { path:'asignar-motorizado', component:AsignarMotorizadoComponent},
+    { path: 'asignar-motorizado/elegir-motorizado/:id', component:ElegirMotorizadoComponent}
   ]
 },
 ];

@@ -5,4 +5,5 @@ export interface RespuestaInterface{
     nombreCliente: string;
     rolUsuario: string;
     nombres: string;
+    id:number;
 }

@@ -1,8 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { DetalleVenta } from 'src/app/clases/detalle-venta';
 import { environment } from 'src/app/clases/paypal';
 import { Productos } from 'src/app/clases/producto';
+import { Venta } from 'src/app/clases/venta';
+import { VentaDto } from 'src/app/clases/ventadto';
+import { VentasService } from 'src/app/servicios/api-ventas/ventas.service';
 import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
 
 
@@ -18,13 +22,84 @@ export class DatosEntregaComponent implements OnInit {
   telefono: string = '';
 
   public payPalConfig?: IPayPalConfig;
+
   carrito: Productos[] = [];
 
   myCart$ = this.tiendaService.myCart$;
   constructor(
     private tiendaService: TiendaService,
-    private router: Router
+    private router: Router,
+    private ventaService: VentasService
   ) { }
+
+
+
+
+  /*
+  convertirJSONVenta():void{
+    this.tiendaService.getCart();
+    console.log(this.tiendaService.getCart())
+  }
+  */
+
+  RegistrarVenta(): void {
+    const carritoProductos = this.tiendaService.getCart();
+  
+    // Array para almacenar los detalles de venta
+    const detallesVenta: DetalleVenta[] = [];
+  
+    // Recorre el array de productos del carrito y crea los detalles de venta
+    carritoProductos.forEach(producto => {
+      const detalleVenta: DetalleVenta = {
+        cantidad: producto.stock,
+        precio_uni: producto.precio,
+        subtotal: producto.stock * producto.precio,
+        libro2: {
+          id_libro: producto.id_libro
+        }
+      };
+      detallesVenta.push(detalleVenta);
+    });
+  
+    // Datos de la venta
+    const venta: Venta = {
+      total: this.tiendaService.totalCart(),
+      cantidad_total: carritoProductos.length,
+      direccion: 'Direccion de prueba',
+      tipo: true,
+      cliente: {
+        clienteId: 1
+      },
+      usuario: {
+        usuarioId: 1
+      },
+      motorizado: {
+        motorizadoId: 1
+      }
+    };
+  
+    //const ventaEnviar: Venta = {...venta};
+
+    // Crear el objeto VentaDto y asignar los datos de venta y detalles de venta
+    const ventaDto: VentaDto = {
+      venta: venta,
+      detalles: detallesVenta
+    };
+
+    // Llamar al servicio de registro de ventas para enviar los datos al servidor
+    
+    this.ventaService.registrarVenta(ventaDto).subscribe(
+      response => {
+        console.log('Venta registrada con éxito:', response);
+        // Limpia el carrito después de realizar la venta (opcional)
+        //this.tiendaService.clear();
+      },
+      error => {
+        console.error('Error al registrar la venta:', error);
+      }
+    );
+  }
+
 
 
   emptyCart(): void {
@@ -32,7 +107,6 @@ export class DatosEntregaComponent implements OnInit {
   }
 
   limpiarFormulario() {
-    // Si se selecciona "Recojo en tienda", limpiamos los campos de dirección y teléfono
     if (!this.entregaADomicilio) {
       this.direccion = '';
       this.telefono = '';
@@ -41,6 +115,7 @@ export class DatosEntregaComponent implements OnInit {
 
   ngOnInit() {
     this.initConfig();
+    this.RegistrarVenta();
   }
   totalCart() {
     const r = this.tiendaService.totalCart();
@@ -62,7 +137,7 @@ export class DatosEntregaComponent implements OnInit {
     }); 
     return items;
   }
-
+  
       //PAYPAL
       private initConfig(): void {
         this.payPalConfig = {

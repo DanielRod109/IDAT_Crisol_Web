@@ -38,10 +38,6 @@ import { ProductosComponent } from './clientes/productos/productos.component';
 
 import { ProductoComponent } from './admin/producto/producto.component';
 
-import { RegistrarComponent } from './admin/producto/registrar/registrar.component';
-
-import { EditarComponent } from './admin/producto/editar/editar.component';
-
 import { ProductoRegistrarEditarComponent } from './admin/producto/producto-registrar-editar/producto-registrar-editar.component';
 
 import { PrincipalAdminComponent } from './admin/principal-admin/principal-admin.component';
@@ -88,6 +84,7 @@ import { ListaCompraComponent } from './clientes/lista-compra/lista-compra.compo
 import { NgxPayPalModule } from 'ngx-paypal';
 
 import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.component';
+import { ElegirMotorizadoComponent } from './admin/asignar-motorizado/elegir-motorizado/elegir-motorizado.component';
 
 
 
@@ -112,9 +109,9 @@ import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.co
 
     ProductoComponent,
 
-    RegistrarComponent,
+    //RegistrarComponent,
 
-    EditarComponent,
+    //EditarComponent,
 
     ProductoRegistrarEditarComponent,
 
@@ -158,7 +155,8 @@ import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.co
 
     ListaCompraComponent,
 
-    DatosEntregaComponent
+    DatosEntregaComponent,
+      ElegirMotorizadoComponent
 
    // CategoriaComponent,
 
