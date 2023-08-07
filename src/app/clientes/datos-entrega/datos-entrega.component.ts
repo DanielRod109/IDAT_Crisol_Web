@@ -117,6 +117,7 @@ export class DatosEntregaComponent implements OnInit {
     this.initConfig();
     this.RegistrarVenta();
   }
+
   totalCart() {
     const r = this.tiendaService.totalCart();
     return r;

@@ -28,7 +28,9 @@ import { AsignarMotorizadoComponent } from './admin/asignar-motorizado/asignar-m
 import { DatosEntregaComponent } from './clientes/datos-entrega/datos-entrega.component';
 import { ListaCompraComponent } from './clientes/lista-compra/lista-compra.component';
 import { ElegirMotorizadoComponent } from './admin/asignar-motorizado/elegir-motorizado/elegir-motorizado.component';
- 
+import { ClienteComponent } from './admin/clientes/cliente/cliente.component';
+import { FormClienteComponent } from './admin/clientes/form-cliente/form-cliente.component';
+
 const routes: Routes = [
   {
     path: '' , redirectTo:'crisol',
@@ -80,40 +82,39 @@ const routes: Routes = [
     { path:'productos', component:ProductoComponent},
     { path:'crud-producto', component:ProductoRegistrarEditarComponent},
     { path:'crud-producto/:id', component:ProductoRegistrarEditarComponent},
-   
+    //CRUD Usuarios
     { path:'usuarios', component:UsuarioComponent},
     { path:'crud-usuarios', component:FormUsuarioComponent},
     { path:'crud-usuarios/:id', component:FormUsuarioComponent},
-
-    { path:'motorizados', component:MotorizadoComponent},
-    { path:'crud-motorizado', component:MotorizadoRegistrarEditarComponent},
-    { path:'crud-motorizado/:id',component:MotorizadoRegistrarEditarComponent},
-
+    //CRUD subgeneros
     { path: 'subgeneros', component:SubgeneroComponent},
     { path:'crud-subgeneros', component:FormSubgeneroComponent},
     { path:'crud-subgeneros/:id', component:FormSubgeneroComponent},
-
+    //CRUD generos
     { path: 'generos', component:GeneroComponent},
     { path:'crud-generos', component:FormGeneroComponent},
     { path:'crud-generos/:id', component:FormGeneroComponent},
- 
-
+    //CRUD categorias
     { path: 'categorias', component:CategoriaComponent},
     { path:'crud-categorias', component:FormCategoriaComponent},
     { path:'crud-categorias/:id', component:FormCategoriaComponent},
- 
-    
+    //CRUD subgeneros
     { path: 'generos-subgeneros', component:GenSubComponent},
     { path:'registrar-generos-subgeneros', component:FormGenSubComponent},
- 
- 
+
     //CRUD Motorizados
     { path:'motorizados', component:MotorizadoComponent},
     { path:'crud-motorizado', component:MotorizadoRegistrarEditarComponent},
     { path:'crud-motorizado/:id',component:MotorizadoRegistrarEditarComponent},
     //Asignar Motorizado
     { path:'asignar-motorizado', component:AsignarMotorizadoComponent},
-    { path: 'asignar-motorizado/elegir-motorizado/:id', component:ElegirMotorizadoComponent}
+    { path: 'asignar-motorizado/elegir-motorizado/:id', component:ElegirMotorizadoComponent},
+
+    //CRUD clientes
+    { path: 'clientes', component:ClienteComponent},
+    { path:'crud-clientes', component:FormClienteComponent},
+    { path:'crud-clientes/:id', component:FormClienteComponent}
+
   ]
 },
 ];
@@ -127,4 +128,5 @@ export class AppRoutingModule { }
 export const routingComponents = [PrincipalComponent,LoginComponent,
                         RegistroComponent, UsuarioComponent,FormUsuarioComponent,LoginUsuarioComponent,
                       SubgeneroComponent, FormSubgeneroComponent, GeneroComponent,
-                    FormGeneroComponent, FormCategoriaComponent, CategoriaComponent]
+                    FormGeneroComponent, FormCategoriaComponent, CategoriaComponent,
+                  FormClienteComponent, ClienteComponent]

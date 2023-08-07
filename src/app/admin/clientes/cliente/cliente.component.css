@@ -8,13 +8,6 @@
   }
   
 
-  img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70px;
-  }
-
 .jumbotron{
     background-color: #ffffff; 
     padding: 1rem;
@@ -40,38 +33,13 @@
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
     cursor: pointer;
-    margin-right: 10px;
   }
   
   .btn-primary:hover {
     background-color: #ffffff;
     border-color: #002d85;
     color: #002d85;
-    margin-right: 10px;
   }
-
-  .btn-success {
-    background-color: #158350;
-    border-color: #158350;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-
-  .btn-danger {
-    background-color: #d3151f;
-    border-color: #d3151f;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-  }
-  
-
-
 .table-responsive{
     text-align: center;
   }

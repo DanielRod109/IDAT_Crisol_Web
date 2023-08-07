@@ -1,5 +1,5 @@
 export class Cliente {
-    id: any | null = null;
+    clienteId: any | null = null;
     dni: string | null = null;
     apellidos: string | null = null;
     nombres: string | null = null;
