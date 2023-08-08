@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
 import { MenuData } from 'src/app/clases/menuData';
 import { ClienteServiceService } from 'src/app/servicios/api-cliente/cliente-service.service';
 import { MenuService } from 'src/app/servicios/apis-menu/menu.service';
@@ -49,6 +50,7 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.clienteService.logout();
+    this.tiendaService.clear();
     const Toast = Swal.mixin({
       toast: true,
       position: 'top',

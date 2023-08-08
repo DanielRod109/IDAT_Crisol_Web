@@ -10,8 +10,9 @@
 
           <div class="form-group">
             <label for="total">Total</label>
-            <input type="text" [(ngModel)]="venta.total"  name="total" disabled="true">
+            <input type="text" [(ngModel)]="venta.total"  name="total" disabled="true" value="S/.{{ venta.total }}">
           </div>
+          
 
           <div class="form-group">
             <label for="fecha">Fecha de venta</label>
@@ -21,6 +22,16 @@
           <div class="form-group">
             <label for="direccion">Dirección</label>
             <input type="text" [(ngModel)]="venta.direccion" name="direccion" disabled="true">
+          </div>
+
+          <div class="form-group">
+            <label for="cliente">Cliente</label>
+            <input type="text" [(ngModel)]="venta.cliente.nombres" name="cliente" disabled="true">
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" [(ngModel)]="venta.cliente.telefono" name="telefono" disabled="true">
           </div>
 
 
