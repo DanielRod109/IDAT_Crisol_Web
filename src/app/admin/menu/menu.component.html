@@ -9,7 +9,7 @@
         <!--Opcion Productos-->
         <li (click)="toggleSubopciones()"
           *ngIf="rolUsuario =='Administrador' || rolUsuario =='Almacén'|| rolUsuario =='Compras'">
-          <i class="fa-solid fa-grip-lines"></i><label>Productos</label>
+          <i class="fa-solid fa-grip-lines"></i><label>Almacén</label>
           <i class="fa-solid"
             [ngClass]="{'fa-angle-down': subopcionesProducto, 'fa-angle-right': !subopcionesProducto}"></i>
         </li>
@@ -81,7 +81,7 @@
         </ul>
         
 
-
+        <!--
         <li [ngClass]="{ 'selected': isSelected('admin/principal/compras') }"
           (click)="selectOption('admin/principal/compras')"
           *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
@@ -91,7 +91,7 @@
           (click)="selectOption('admin/principal/almacen')"
           *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
           <i class="fa-solid fa-warehouse"></i><a>Almacén</a>
-        </li>
+        </li>-->
 
         <li [ngClass]="{ 'selected': isSelected('admin/principal/motorizados') }"
           (click)="selectOption('admin/principal/motorizados')" *ngIf="rolUsuario =='Administrador'">
