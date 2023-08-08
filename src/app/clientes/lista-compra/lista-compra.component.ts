@@ -23,16 +23,22 @@ export class ListaCompraComponent {
 
   ngOnInit(): void{
     if (this.clienteService.isAuthenticated()) {
-      this.clienteId= this.clienteService.getClienteId();
+      this.clienteId= this.clienteService.getClienteId(); 
     }
     this.getVentas();
+    console.log(this.clienteId);
   }
 
   getVentas(){
-    this.ventaService.buscarVentaCliente(this.clienteId?? 0).subscribe((data) =>{
-      return this.ventas = data;
-    })
+    if (this.clienteId !== null) {
+      this.ventaService.buscarVentaCliente(this.clienteId).subscribe((data) =>{
+        this.ventas = data;
+      });
+    } else {
+      console.error('El clienteId es null');
+    }
   }
+  
 
   
 

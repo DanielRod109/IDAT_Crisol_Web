@@ -90,6 +90,7 @@ import { ElegirMotorizadoComponent } from './admin/asignar-motorizado/elegir-mot
 
 import { FormClienteComponent } from './admin/clientes/form-cliente/form-cliente.component';
 import { ClienteComponent } from './admin/clientes/cliente/cliente.component';
+import { VentasCursoComponent } from './admin/asignar-motorizado/ventas-curso/ventas-curso.component';
 
 @NgModule({
 
@@ -161,7 +162,8 @@ import { ClienteComponent } from './admin/clientes/cliente/cliente.component';
       ElegirMotorizadoComponent,
 
     FormClienteComponent,
-    ClienteComponent
+    ClienteComponent,
+    VentasCursoComponent
    // CategoriaComponent,
 
    // LoginComponent,

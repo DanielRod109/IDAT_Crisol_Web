@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -30,6 +30,7 @@ import { ListaCompraComponent } from './clientes/lista-compra/lista-compra.compo
 import { ElegirMotorizadoComponent } from './admin/asignar-motorizado/elegir-motorizado/elegir-motorizado.component';
 import { ClienteComponent } from './admin/clientes/cliente/cliente.component';
 import { FormClienteComponent } from './admin/clientes/form-cliente/form-cliente.component';
+import { VentasCursoComponent } from './admin/asignar-motorizado/ventas-curso/ventas-curso.component';
 
 const routes: Routes = [
   {
@@ -109,6 +110,7 @@ const routes: Routes = [
     //Asignar Motorizado
     { path:'asignar-motorizado', component:AsignarMotorizadoComponent},
     { path: 'asignar-motorizado/elegir-motorizado/:id', component:ElegirMotorizadoComponent},
+    { path: 'ventas-curso', component:VentasCursoComponent},
 
     //CRUD clientes
     { path: 'clientes', component:ClienteComponent},

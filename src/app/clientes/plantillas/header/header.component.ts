@@ -3,6 +3,7 @@ import { MenuData } from 'src/app/clases/menuData';
 import { ClienteServiceService } from 'src/app/servicios/api-cliente/cliente-service.service';
 import { MenuService } from 'src/app/servicios/apis-menu/menu.service';
 import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -48,6 +49,23 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.clienteService.logout();
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      background: '#3fc3ee',
+      iconColor: 'white',
+      showConfirmButton: false,
+      timer: 1200,
+      timerProgressBar: false,
+      customClass: {
+        title: 'white-title' // Utiliza la clase personalizada aquí para el título
+      }
+    });
+    
+    Toast.fire({
+      icon: 'info',
+      title: 'Sesión cerrada correctamente'
+    });
   }
 
   isAuthenticated(): boolean {

@@ -1,1 +1,54 @@
-<p>elegir-motorizado works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form  class="custom-form">
+
+          <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" [(ngModel)]="venta.ventaId" name="id" disabled="true">
+          </div>
+
+          <div class="form-group">
+            <label for="total">Total</label>
+            <input type="text" [(ngModel)]="venta.total"  name="total" disabled="true">
+          </div>
+
+          <div class="form-group">
+            <label for="fecha">Fecha de venta</label>
+            <input type="text" [(ngModel)]="venta.fecha_venta" name="fecha" disabled="true" >
+          </div>
+
+          <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" [(ngModel)]="venta.direccion" name="direccion" disabled="true">
+          </div>
+
+
+
+
+
+          <div class="form-group">
+            <label for="rol">Motorizados</label>
+            <select  [(ngModel)]="seleccionMotorizado" name="motorizadoId" class="form-select">
+              <option value="" disabled="disabled" >Seleccionar Motorizado</option>
+              <option *ngFor="let m of motorizado" [value]="m.motorizadoId">{{ m.nombres }}</option>
+            </select>
+            <div *ngIf="seleccionMotorizado === 0" class="error-message">
+              Seleccione un motorizado.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary mr-2 custom-button" (click)='asignarVenta()'>
+                <i class="fa-solid fa-check"></i>  Confirmar
+              </button>
+              <button type="button" name="button" [routerLink]="['/admin/principal/asignar-motorizado']" class="btn btn-secondary">
+                <i class="fa-solid fa-xmark"></i>  Cancelar
+              </button>
+            </div>
+           </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,53 @@
+<ng-container *ngIf="ventas.length > 0; else noVentas">
+
+    <div class="jumbotron text-white">
+        <h1 class="display-4">Ventas en curso</h1>
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center mt-3">
+            <div class="col-lg-10">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped custom-table mt-3">
+                        <thead class="bg-secondary table-light">
+                            <tr>
+                                <th>Id</th>
+                                <th>Total</th>
+                                <th>Nº Productos</th>
+                                <th>Fecha</th>
+                                <th>Tipo</th>
+                                <th>Cliente</th>
+                                <th>Motorizado</th>
+                                <th>Estado</th>
+                                <th>Asignar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let a of ventas">
+                                <td>{{a.ventaId}}</td>
+                                <td>S/.{{a.total}}</td>
+                                <td>{{a.cantidad_total}}</td>
+                                <td>{{a.fecha_venta}}</td>
+                                <td>{{ a.tipo === false ? 'Recojo en tienda' : (a.tipo === true ? 'Entrega a domicilio'
+                                    : '') }}</td>
+                                <td>{{a.cliente}}</td>
+                                <td>{{a.motorizado}}</td>
+                                <td>{{a.estado}}</td>
+                                <td>
+                                    <button type="button" name="button" (click)='confirmarVenta(a.ventaId)'
+                                        class="btn btn-success btn-sm"> <i class="fa-regular fa-square-check"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-template #noVentas>
+    <div class="no-ventas-container">
+        <img src="https://odi.ucr.ac.cr/medios/imagenes/2010/logo-crisol.jpg" alt="No hay ventas">
+        <p>Parece que no hay ventas en curso...</p>
+    </div>
+</ng-template>
