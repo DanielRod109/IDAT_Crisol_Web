@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Productos } from 'src/app/clases/producto';
+import { ClienteServiceService } from 'src/app/servicios/api-cliente/cliente-service.service';
 import { ProductosService } from 'src/app/servicios/api-productos/productos.service';
 import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-productos',
@@ -19,7 +21,8 @@ export class ProductosComponent implements OnInit {
 
   constructor(private tiendaService:TiendaService,
      private productoService:ProductosService,
-     private route: ActivatedRoute){}
+     private route: ActivatedRoute,
+     private clienteService:ClienteServiceService){}
 
      ngOnInit(): void {
       this.route.queryParams.subscribe(params => {
@@ -40,8 +43,41 @@ export class ProductosComponent implements OnInit {
     })
   }
   
-  addToCart(product: Productos) {
+  isAuthenticated(): boolean {
+    return this.clienteService.isAuthenticated();
+  }
+
+  async addToCart(product: Productos) {
+
+    if(this.isAuthenticated()){
     this.tiendaService.añadirProducto(product)
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      background: '#a5dc86',
+      iconColor: 'white',
+      showConfirmButton: false,
+      timer: 1000,
+      timerProgressBar: false,
+      customClass: {
+        title: 'white-title' // Utiliza la clase personalizada aquí para el título
+      }
+    });
+    
+    await Toast.fire({
+      icon: 'success',
+      title: 'Producto agregado al carrito'
+    });
+  }else{
+    Swal.fire(
+      'Debe iniciar sesión',
+      'Para continuar con su compra, por favor inicie sesión',
+      'warning'
+    )
+
+  }
+    
   }
 
   

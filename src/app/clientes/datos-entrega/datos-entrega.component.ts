@@ -6,6 +6,7 @@ import { environment } from 'src/app/clases/paypal';
 import { Productos } from 'src/app/clases/producto';
 import { Venta } from 'src/app/clases/venta';
 import { VentaDto } from 'src/app/clases/ventadto';
+import { ClienteServiceService } from 'src/app/servicios/api-cliente/cliente-service.service';
 import { VentasService } from 'src/app/servicios/api-ventas/ventas.service';
 import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
 
@@ -17,9 +18,14 @@ import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
 })
 export class DatosEntregaComponent implements OnInit {
 
-  entregaADomicilio: boolean = true;
+  entregaADomicilio: string;
+
+  bloquearCampos: boolean = false;
+
   direccion: string = '';
   telefono: string = '';
+
+  clienteIdRegistro: number | null = null;;
 
   public payPalConfig?: IPayPalConfig;
 
@@ -29,18 +35,28 @@ export class DatosEntregaComponent implements OnInit {
   constructor(
     private tiendaService: TiendaService,
     private router: Router,
-    private ventaService: VentasService
+    private ventaService: VentasService,
+    private clienteService:ClienteServiceService
   ) { }
+  
 
 
 
 
-  /*
-  convertirJSONVenta():void{
-    this.tiendaService.getCart();
-    console.log(this.tiendaService.getCart())
+  opcionEnvioCambiada() {
+    console.log('Opción de envío cambiada:', this.entregaADomicilio);
+    if(this.entregaADomicilio == "true"){
+      this.bloquearCampos = false;
+      console.log("Entrega a domicilio")
+    }else{
+      console.log("Recojo en tienda");
+      this.direccion = '';
+      this.telefono = '';
+      this.bloquearCampos = true;
+    }
+
   }
-  */
+
 
   RegistrarVenta(): void {
     const carritoProductos = this.tiendaService.getCart();
@@ -65,10 +81,10 @@ export class DatosEntregaComponent implements OnInit {
     const venta: Venta = {
       total: this.tiendaService.totalCart(),
       cantidad_total: carritoProductos.length,
-      direccion: 'Direccion de prueba',
+      direccion: this.direccion,
       tipo: true,
       cliente: {
-        clienteId: 1
+        clienteId: this.clienteIdRegistro
       },
       usuario: {
         usuarioId: 1
@@ -106,26 +122,21 @@ export class DatosEntregaComponent implements OnInit {
     this.tiendaService.clear();
   }
 
-  limpiarFormulario() {
-    if (!this.entregaADomicilio) {
-      this.direccion = '';
-      this.telefono = '';
-    }
-  }
-
   ngOnInit() {
     this.initConfig();
-    this.RegistrarVenta();
+    this.clienteIdRegistro= this.clienteService.getClienteId();
+    console.log(this.clienteIdRegistro); 
   }
-
   totalCart() {
     const r = this.tiendaService.totalCart();
     return r;
   }
 
   getItemsList(): any[] {
+
     const items: any[] = [];
     let item = {};
+    
     this.myCart$.subscribe((productos: Productos[]) => {
       productos.forEach((it: Productos) => {
         item = {
@@ -147,7 +158,7 @@ export class DatosEntregaComponent implements OnInit {
           // tslint:disable-next-line: no-angle-bracket-type-assertion
           createOrderOnClient: (data) => <ICreateOrderRequest> {
             intent: 'CAPTURE',
-            purchase_units: [{
+            purchase_units: [{ //venta
               amount: {
                 currency_code: 'USD',
                 value: this.totalCart().toString(),
@@ -158,7 +169,7 @@ export class DatosEntregaComponent implements OnInit {
                   }
                 }
               },
-              items: this.getItemsList()
+              items: this.getItemsList() //detalle venta
             }]
           },
           advanced: {
@@ -179,6 +190,7 @@ export class DatosEntregaComponent implements OnInit {
           onClientAuthorization: (data) => {
             console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point',
             JSON.stringify(data));
+            this.RegistrarVenta();
             this.emptyCart();
             this.router.navigate(['/'])
             //this.spinner.hide();

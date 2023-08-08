@@ -1,3 +1,4 @@
+<ng-container *ngIf="ventas.length > 0; else noVentas">
 <div class="jumbotron text-white">
     <h1 class="display-4">Asignar Motorizado</h1>
 </div>
@@ -24,7 +25,7 @@
                             <td>S/.{{a.total}}</td>
                             <td>{{a.cantidad_total}}</td>
                             <td>{{a.fecha_venta}}</td>
-                            <td>{{a.tipo}}</td>
+                            <td>{{ a.tipo === false ? 'Recojo en tienda' : (a.tipo === true ? 'Entrega a domicilio' : '') }}</td>
                             <td>{{a.cliente}}</td>
                             <td>{{a.motorizado}}</td>
                             <td>                                
@@ -38,3 +39,10 @@
         </div>
     </div>
 </div>
+</ng-container>
+<ng-template #noVentas>
+    <div class="no-ventas-container">
+        <img src="https://media.tenor.com/TzkLlnAZZfUAAAAM/zzz-sleeping.gif" alt="No hay ventas">
+        <p>Parece que no hay ventas para asignar...</p>
+    </div>
+</ng-template>

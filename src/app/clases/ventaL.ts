@@ -3,7 +3,6 @@ import { Motorizado } from "./motorizado";
 import { Usuario } from "./usuario";
 
 export class Vental {
-    
     ventaId:number;
     total:number;
     cantidad_total:number;

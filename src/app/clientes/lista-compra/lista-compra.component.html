@@ -1,23 +1,25 @@
 <app-header></app-header>
-    
-    <div class="products-container">
+<ng-container *ngIf="ventas.length > 0; else noVentas">
 
-        <article class="product" *ngFor="let v of ventas">
-
-            <div class="product-header">
-                <h4 class="product-header-title"> {{v.cantidad_total}}</h4>
-                <p>{{v.fecha_venta}}</p>
-                <p>S/. {{ v.total }}</p>
-            </div>
-            <!--
-
-        <app-item-producto> [product]="product"</app-item-producto>
-
-            -->
-
-        </article>
-
-
-
-
+<div class="products-container">
+    <article class="product-card" *ngFor="let v of ventas">
+        <div class="product-header">
+            <p class="product-date">{{ v.fecha_venta }}</p>
+        </div>
+        <div class="product-details">
+            <p class="product-status">{{ v.estado }}</p>
+            <p class="product-price">S/. {{ v.total }}</p>
+        </div>
+        <div class="product-bottom">
+            <p class="product-quantity">Productos comprados: {{ v.cantidad_total }}</p>
+            <p class="product-tipo">{{ v.tipo === false ? 'Recojo en tienda' : (v.tipo === true ? 'Entrega a domicilio' : '') }}</p>
+        </div>
+    </article>
+</div>
+</ng-container>
+<ng-template #noVentas>
+    <div class="no-ventas-container">
+        <img src="https://odi.ucr.ac.cr/medios/imagenes/2010/logo-crisol.jpg" alt="No hay ventas">
+        <p>Cuando hagas una compra, aparecerá aquí</p>
     </div>
+</ng-template>

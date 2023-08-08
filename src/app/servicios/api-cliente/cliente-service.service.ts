@@ -27,7 +27,7 @@ export class ClienteServiceService {
       this.clienteNombre = clienteNombreString;
     }
     if (clienteIdNumber){
-      this.clienteId = parseInt(clienteIdNumber);
+      this.clienteId = JSON.parse(clienteIdNumber);
     }
   }
 
