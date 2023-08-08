@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'src/app/servicios/carrito-libros/message.service';
 import { TiendaService } from 'src/app/servicios/carrito-libros/tienda.service';
-import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
-import { Productos } from 'src/app/clases/producto';
-import { ItemsCarrito } from 'src/app/clases/items-carrito';
-import { environment } from 'src/app/clases/paypal';
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
@@ -13,22 +7,14 @@ import { Router } from '@angular/router';
 })
 export class CarritoComponent implements OnInit {
 
-  public payPalConfig?: IPayPalConfig;
-
-  /*
-  cartItems:any[] = [];
-  total = 0;
-  */
   constructor(
     private tiendaService: TiendaService,
-    private router: Router
   ) { }
 
 
   ngOnInit(): void {
   }
 
- 
   myCart$ = this.tiendaService.myCart$;
 
   viewCart: boolean = false;
