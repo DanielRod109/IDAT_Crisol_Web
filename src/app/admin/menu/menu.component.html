@@ -86,20 +86,7 @@
             *ngIf="rolUsuario =='Administrador' || rolUsuario =='Ventas'">
             <i class="fa-solid fa-coins"></i><a>Ventas en curso</a>
           </li>
-
-
         </ul>
-
-        <!---
-        <li [ngClass]="{ 'selected': isSelected('admin/principal/ventas') }"
-          (click)="selectOption('admin/principal/ventas')"
-          *ngIf="rolUsuario =='Ventas' || rolUsuario =='Administrador'">
-          <i class="fa-solid fa-hand-holding-dollar"></i><a>Ventas</a>
-        </li>
-        ----------------------->
-
-
-
         <li [ngClass]="{ 'selected': isSelected('admin/principal/compras') }"
           (click)="selectOption('admin/principal/compras')"
           *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
@@ -125,35 +112,3 @@
     </div>
   </div>
 </div>
-<!--
-<script>
-    $("#mobile").click(function() {
-    $('.sideBar').addClass("showMenu");
-    $('.sideBar').removeClass("widthChange");
-    $('.backdrop').addClass('showBackdrop')
-    });
-    $(".cross-icon").click(function() {
-    $('.sideBar').removeClass("showMenu");
-    $('.backdrop').removeClass('showBackdrop')
-    });
-    $(".backdrop").click(function() {
-    $('.sideBar').removeClass("showMenu");
-    $('.backdrop').removeClass('showBackdrop')
-    });
-    $("#desktop").click(function() {
-    $('li label').toggleClass("hideMenuList");
-    $('.sideBar').toggleClass("widthChange");
-    });
-    $('li').click(function() {
-    $('li').removeClass();
-    $(this).addClass('selected');
-    $('.sideBar').removeClass("showMenu");
-    });
-
-    $(document).ready(function() {
-    $('li').click(function() {
-      var content = $(this).data('content');
-      $('.content-data').html(content);
-    });
-  });
-</script>-->

@@ -19,6 +19,7 @@ export class AsignarMotorizadoComponent {
     this.getVentas();
   }
 
+
   getVentas(){
     this.ventaService.obtenerVentasPendientesDomicilio().subscribe((data) =>{
       return this.ventas = data;
