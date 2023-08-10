@@ -4,6 +4,7 @@ import { ClienteServiceService } from 'src/app/servicios/api-cliente/cliente-ser
 import { LoginInterface } from 'src/app/clases/LoginInterface';
 import { RespuestaInterface } from 'src/app/clases/RespuestaLoginInterface';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -64,6 +65,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['crisol']);
           }, 2000);
         }
+        this.bienvenida();
       },
       error => {
         this.validarLogin();
@@ -82,6 +84,26 @@ export class LoginComponent implements OnInit {
         console.log(error.error.message); // Verificar el mensaje de error en la consola
       }
     );
+  }
+
+  async bienvenida(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      background: '#a5dc86',
+      iconColor: 'white',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: false,
+      customClass: {
+        title: 'white-title' // Utiliza la clase personalizada aquí para el título
+      }
+    });
+    
+    await Toast.fire({
+      icon: 'success',
+      title: 'Sesión iniciada correctamente.'
+    });
   }
 
   onLogout() {

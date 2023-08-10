@@ -28,8 +28,18 @@ export class MotorizadoRegistrarEditarComponent implements OnInit {
     })
   }
 
+  validarCampos(): boolean {
+    if(!this.motorizado.nombres || this.motorizado.nombres.trim() === '') return false;
+    if(!this.motorizado.apellidos || this.motorizado.apellidos.trim() === '') return false;
+    if(!this.motorizado.dni) return false;
+    if(!this.motorizado.placa || this.motorizado.placa.trim() === '' || this.motorizado.placa.length > 7) return false; // Considerando que la placa tenga un máximo de 7 caracteres.
+
+    return true;
+}
+
   public createMotorizado(): void{
     //this.irAListado();
+    if(this.validarCampos()) {
     this.motorizadoService.registrarMotorizado(this.motorizado)
     .subscribe(
       (motorizado) =>{
@@ -44,11 +54,20 @@ export class MotorizadoRegistrarEditarComponent implements OnInit {
         console.error(error);
       }
     );
+    }
+    else{
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Datos incompletos'
+      })
+    }
   }
 
 
   updateMotorizado(): void{
     //this.irAListado();
+    if(this.validarCampos()) {
     this.motorizadoService.actualizarMotorizado(this.motorizado)
     .subscribe(
       (motorizado) => {
@@ -62,6 +81,14 @@ export class MotorizadoRegistrarEditarComponent implements OnInit {
         console.error(error);
       }
     );
+    }
+    else{
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Datos incompletos'
+      })
+    }
   }
 
  /* irAListado(){

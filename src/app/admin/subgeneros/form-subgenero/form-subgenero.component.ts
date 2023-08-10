@@ -41,8 +41,14 @@ export class FormSubgeneroComponent implements OnInit{
     });
   }
 
+  validarCampos(): boolean {
+    if(!this.subgenero.nombre || this.subgenero.nombre.trim() === '') return false;
+    if(this.subgenero.subgeneroId && (!this.subgenero.estado || this.subgenero.estado.trim() === '')) return false;
+    return true;
+}
+
   public crearSubgenero(): void {
-    
+    if(this.validarCampos()) {
     this.subgeneroService
       .crearSubgenero(this.subgenero)
       .subscribe(
@@ -58,11 +64,18 @@ export class FormSubgeneroComponent implements OnInit{
           console.error(error);
         }
       );
-    
+      }
+      else{
+        swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Datos incompletos'
+        })
+      }
   }
 
   public editarSubgenero(): void {
-   
+    if(this.validarCampos()) {
     this.subgeneroService
       .editarSubgenero(this.subgenero)
       .subscribe(
@@ -78,7 +91,13 @@ export class FormSubgeneroComponent implements OnInit{
           console.error(error);
         }
       );
+    }
+    else{
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Datos incompletos'
+      })
+    }
   }
-
-
 }

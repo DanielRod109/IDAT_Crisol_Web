@@ -6,7 +6,10 @@
     list-style: none;
     box-sizing: border-box;
 }
-
+.menu-wrapper ul {
+    max-height: 90vh;   /* Esto define una altura máxima. Puede ajustar según tus necesidades. */
+    overflow-y: auto;   /* Añadir una barra de desplazamiento vertical si es necesario */
+}
 body {
     background-color: #eff2f5;
     overflow: hidden;

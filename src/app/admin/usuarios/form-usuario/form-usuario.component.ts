@@ -57,8 +57,33 @@ export class FormUsuarioComponent implements OnInit {
     );
   }
 
+  validarCampos(): boolean {
+    if(!this.usuario.dni || this.usuario.dni.trim() === '') {
+        return false;
+    }
+    if(!this.usuario.nombre_trabajador || this.usuario.nombre_trabajador.trim() === '') {
+        return false;
+    }
+    if(!this.usuario.telefono || this.usuario.telefono.trim() === '') {
+        return false;
+    }
+    if(!this.usuario.email || this.usuario.email.trim() === '' ) {
+        return false;
+    }
+    if(!this.usuario.password || this.usuario.password.trim() === '' ) {
+        return false;
+    }
+    if(!this.seleccionRol || this.seleccionRol === 0) {
+        return false;
+    }
+    if(this.usuario.usuarioId && (!this.usuario.estado || this.usuario.estado.trim() === '')) {
+        return false;
+    }
+    return true;
+}
+
   public crearUsuario(): void {
-    
+    if(this.validarCampos()) {
     this.usuarioService
       .crearUsuario(this.usuario, this.seleccionRol)
       .subscribe(
@@ -74,11 +99,19 @@ export class FormUsuarioComponent implements OnInit {
           console.error(error);
         }
       );
+    }
+    else{
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Datos incompletos'
+      })
+    }
     
   }
 
   public editarUsuario(): void {
-   
+    if(this.validarCampos()) {
     this.usuarioService
       .editarUsuario(this.usuario, this.seleccionRol)
       .subscribe(
@@ -94,6 +127,14 @@ export class FormUsuarioComponent implements OnInit {
           console.error(error);
         }
       );
+    }
+    else{
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Datos incompletos'
+      })
+    }
   }
 
 

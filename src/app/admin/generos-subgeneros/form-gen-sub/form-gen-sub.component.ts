@@ -52,8 +52,14 @@ export class FormGenSubComponent {
     );
   }
 
+  validarSeleccion(): boolean {
+    if (!this.seleccionGenero || this.seleccionGenero === 0) return false;
+    if (!this.seleccionSubgenero || this.seleccionSubgenero === 0) return false;
+    return true;
+  }
+
   public crearGeneroSubgenero(): void {
-    
+    if(this.validarSeleccion()) {
     this.gensubService
       .crearGeneroSubgenero(this.genSub, this.seleccionGenero,this.seleccionSubgenero)
       .subscribe(
@@ -69,7 +75,15 @@ export class FormGenSubComponent {
           console.error(error);
         }
       );
-    
+    }
+    else{
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Datos incompletos'
+      })
+    }
+ 
   }
   
 }

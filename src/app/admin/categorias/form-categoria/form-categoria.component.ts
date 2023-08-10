@@ -40,8 +40,14 @@ export class FormCategoriaComponent implements OnInit{
     });
   }
 
+  validarCampos(): boolean {
+    if (!this.categoria.nombre) return false;
+    if (this.categoria.categoriaId && !this.categoria.estado) return false;
+    return true;
+  }
+  
   public crearCategoria(): void {
-    
+    if(this.validarCampos()) {
     this.categoriaService
       .crearCategoria(this.categoria)
       .subscribe(
@@ -57,11 +63,18 @@ export class FormCategoriaComponent implements OnInit{
           console.error(error);
         }
       );
-    
+      }
+      else{
+        swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Datos incompletos'
+        })
+      }
   }
 
   public editarCategoria(): void {
-   
+    if(this.validarCampos()) {
     this.categoriaService
       .editarCategoria(this.categoria)
       .subscribe(
@@ -77,6 +90,14 @@ export class FormCategoriaComponent implements OnInit{
           console.error(error);
         }
       );
+    }
+    else{
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Datos incompletos'
+      })
+    }
   }
 
 

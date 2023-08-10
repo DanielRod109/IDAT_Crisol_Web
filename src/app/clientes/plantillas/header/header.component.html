@@ -19,24 +19,24 @@
   <!-- Fin de la repetición -->
 <!--
       <li><a href="admin/principal">LIBROS A PEDIDOS</a></li>-->
-      <li class="nav-item login" *ngIf="isAuthenticated()">
-        <button class="btn btn-link text-black" (click)="toggleMenu()">
-          <i class="fas fa-user"></i> {{ clienteNombre}}
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="user-menu" *ngIf="showMenu">
-          <button class="btn btn-secondary" [routerLink]="['/'] " (click)="onLogout()">Cerrar sesión</button>
-        </div>
-        <br>
-        <div class="user-menu" *ngIf="showMenu">
-          <button class="btn btn-secondary" [routerLink]="['/crisol/cliente/compras'] ">Mis compras</button>
-        </div>
-      </li>
-      <li class="nav-item login" *ngIf="!isAuthenticated()">
-        <a class="btn btn-link text-black" href="crisol/cliente/cuenta/login">
+      <!-- cliente logueado -->
+    <li class="nav-item login" *ngIf="isAuthenticated()">
+      <button class="btn btn-link text-black dropdown-toggle" (click)="toggleMenu()">
+          <i class="fas fa-user"></i> {{ clienteNombre }}
+      </button>
+      <div class="dropdown-menu" *ngIf="showMenu">
+          <a class="dropdown-item" [routerLink]="['/crisol/cliente/compras']"> Mis compras  <i class="fa-solid fa-list"></i></a>
+          <a class="dropdown-item" [routerLink]="['/']" (click)="onLogout()"> Cerrar sesión  <i class="fas fa-sign-out-alt"></i></a>
+         
+      </div>
+    </li>
+
+    <!-- cliente NO  logueado -->
+    <li class="nav-item login" *ngIf="!isAuthenticated()">
+      <a class="btn btn-link text-black" [routerLink]="['/crisol/cliente/cuenta/login']">
           <i class="fas fa-user"></i> Iniciar sesión
-        </a>
-      </li>
+      </a>
+    </li>
 
 <!---
       <li class="carrito">

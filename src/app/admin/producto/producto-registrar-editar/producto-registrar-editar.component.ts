@@ -53,8 +53,25 @@ export class ProductoRegistrarEditarComponent implements OnInit {
       }
     });
   }
-  
+  validarCampos(): boolean {
+    if(!this.producto.nombre || this.producto.nombre.trim() === '') return false;
+
+    if(!this.producto.editorial || this.producto.editorial.trim() === '') return false;
+    if(!this.producto.peso) return false;
+    if(!this.producto.alto) return false;
+    if(!this.producto.ancho) return false;
+    if(!this.producto.stock) return false;
+    if(!this.producto.precio) return false;
+    if(!this.producto.aedicion) return false;
+    if(!this.producto.npaginas) return false;
+    if(!this.producto.nombre_autor) return false;
+    if(this.seleccionSubgenero === 0 || !this.seleccionSubgenero) return false;
+   if(!this.producto.img) return false;
+    return true;
+}
+
   guardarProducto(){
+    if(this.validarCampos()) {
     this.productoService
     .registrarProductos(this.producto, this.seleccionSubgenero)
     .subscribe(
@@ -66,9 +83,18 @@ export class ProductoRegistrarEditarComponent implements OnInit {
           'success'
         )
     },error => console.log(error));
+    }
+    else{
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Datos incompletos'
+      })
+    }
   }
+
   public editarProducto(): void {
-   
+    if(this.validarCampos()) {
     this.productoService
       .actualizarProductos(this.producto, this.seleccionSubgenero)
       .subscribe(
@@ -84,6 +110,14 @@ export class ProductoRegistrarEditarComponent implements OnInit {
           console.error(error);
         }
       );
+    }
+    else{
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Datos incompletos'
+      })
+    }
   }
 
   

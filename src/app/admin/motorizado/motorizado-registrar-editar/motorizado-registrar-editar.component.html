@@ -48,15 +48,18 @@
             </div>
         </div>
         <br>
-        <div class="text-center">
-            <button class="btn btn-success" role="button" (click)='createMotorizado()'
-                *ngIf="!motorizado.motorizadoId else elseBlock">Crear</button>
-
+        <div class="form-group">
+            <div class="d-flex justify-content-end">
+            <button class="btn btn-success  mr-2" role="button" (click)='createMotorizado()'
+                *ngIf="!motorizado.motorizadoId else elseBlock"> <i class="fa-solid fa-check"></i> Crear</button>
             <ng-template #elseBlock>
-                <button class="btn btn-success" role="button" (click)='updateMotorizado()'>Editar</button>
+                <button class="btn btn-success" role="button" (click)='updateMotorizado()'><i class="fa-solid fa-pen"></i>Editar</button>
             </ng-template>
-                    
+            &nbsp;&nbsp;
+            <button type="button" name="button" [routerLink]="['/admin/principal/motorizados']" class="btn btn-secondary">
+                <i class="fa-solid fa-xmark"></i>  Cancelar
+              </button>
+            </div>
         </div>
-          
     </form>
 </div>

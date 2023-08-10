@@ -41,8 +41,21 @@ export class FormClienteComponent implements OnInit{
     });
   }
   
+  validarCampos(): boolean {
+    if (!this.cliente.dni) return false;
+    if (!this.cliente.nombres) return false;
+    if (!this.cliente.apellidos) return false;
+    if (!this.cliente.telefono) return false;
+    if (!this.cliente.direccion) return false;
+    if (!this.cliente.clienteId) {
+      if (!this.cliente.email) return false;
+      if (!this.cliente.password ) return false;
+    }
+    return true;
+  }
+
   public crearCliente(): void {
-    
+    if(this.validarCampos()) {
     this.clienteService
       .createCliente(this.cliente)
       .subscribe(
@@ -58,11 +71,18 @@ export class FormClienteComponent implements OnInit{
           console.error(error);
         }
       );
-    
+      }
+      else{
+        swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Datos incompletos'
+        })
+      }
   }
 
   public editarCliente(): void {
-   
+    if(this.validarCampos()) {
     this.clienteService
       .editarCliente(this.cliente)
       .subscribe(
@@ -78,6 +98,14 @@ export class FormClienteComponent implements OnInit{
           console.error(error);
         }
       );
+    }
+    else{
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Datos incompletos'
+      })
+    }
   }
 
   validarNumerico(event: KeyboardEvent) {
