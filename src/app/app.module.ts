@@ -91,6 +91,8 @@ import { ElegirMotorizadoComponent } from './admin/asignar-motorizado/elegir-mot
 import { FormClienteComponent } from './admin/clientes/form-cliente/form-cliente.component';
 import { ClienteComponent } from './admin/clientes/cliente/cliente.component';
 import { VentasCursoComponent } from './admin/asignar-motorizado/ventas-curso/ventas-curso.component';
+import { ReporteVentasComponent } from './admin/reportes/reporte-ventas/reporte-ventas.component';
+import { ReporteDetalleVentasComponent } from './admin/reportes/reporte-detalle-ventas/reporte-detalle-ventas.component';
 
 @NgModule({
 
@@ -163,7 +165,9 @@ import { VentasCursoComponent } from './admin/asignar-motorizado/ventas-curso/ve
 
     FormClienteComponent,
     ClienteComponent,
-    VentasCursoComponent
+    VentasCursoComponent,
+    ReporteVentasComponent,
+    ReporteDetalleVentasComponent
    // CategoriaComponent,
 
    // LoginComponent,

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, switchMap } from 'rxjs';
+import { DetalleVental } from 'src/app/clases/detalleventaL';
 import { Motorizado } from 'src/app/clases/motorizado';
 import { Vental } from 'src/app/clases/ventaL';
 import { VentaDto } from 'src/app/clases/ventadto';
@@ -29,6 +30,12 @@ export class VentasService {
   buscarVentaCliente(id:number): Observable<Vental[]>{
     return this.httpClient.get<Vental[]>(`${this.baseUrl}clientes/${id}`).pipe(
       map(response => response as Vental[])
+    );
+  }
+
+  buscarDetalles(id:number): Observable<DetalleVental[]>{
+    return this.httpClient.get<DetalleVental[]>(`${this.baseUrl}detalles/${id}`).pipe(
+      map(response => response as DetalleVental[])
     );
   }
 
