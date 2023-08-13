@@ -31,6 +31,8 @@ import { ElegirMotorizadoComponent } from './admin/asignar-motorizado/elegir-mot
 import { ClienteComponent } from './admin/clientes/cliente/cliente.component';
 import { FormClienteComponent } from './admin/clientes/form-cliente/form-cliente.component';
 import { VentasCursoComponent } from './admin/asignar-motorizado/ventas-curso/ventas-curso.component';
+import { ReporteVentasComponent } from './admin/reportes/reporte-ventas/reporte-ventas.component';
+import { ReporteDetalleVentasComponent } from './admin/reportes/reporte-detalle-ventas/reporte-detalle-ventas.component';
 
 const routes: Routes = [
   {
@@ -115,8 +117,11 @@ const routes: Routes = [
     //CRUD clientes
     { path: 'clientes', component:ClienteComponent},
     { path:'crud-clientes', component:FormClienteComponent},
-    { path:'crud-clientes/:id', component:FormClienteComponent}
+    { path:'crud-clientes/:id', component:FormClienteComponent},
 
+    //Reportes
+    { path: 'reporte-ventas', component:ReporteVentasComponent},
+    { path: 'reporte-detalle-ventas', component:ReporteDetalleVentasComponent}
   ]
 },
 ];

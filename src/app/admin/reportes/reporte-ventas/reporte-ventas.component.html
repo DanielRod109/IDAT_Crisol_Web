@@ -1,0 +1,40 @@
+
+    <div class="jumbotron text-white">
+        <h1 class="display-4">Reporte de ventas</h1>
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center mt-3">
+            <div class="col-lg-10">
+                <div class="d-flex justify-content-end">
+                    <button (click)="exportExcel()" class="btn btn-success mr-4"><i class="fa-solid fa-file-excel fa-lg" style="color: #ffffff;"></i></button>
+                    <button (click)="exportPdf()" class="btn btn-danger"><i class="fa-solid fa-file-pdf fa-lg" style="color: #fafafa;"></i></button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped custom-table mt-3">
+                        <thead class="bg-secondary table-light">
+                            <tr>
+                                <th>Id</th>
+                                <th>Total</th>
+                                <th>Nº Productos</th>
+                                <th>Fecha</th>
+                                <th>Tipo</th>
+                                <th>Cliente</th>
+                                <th>Motorizado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let a of ventas">
+                                <td>{{a.ventaId}}</td>
+                                <td>S/.{{a.total}}</td>
+                                <td>{{a.cantidad_total}}</td>
+                                <td>{{a.fecha_venta}}</td>
+                                <td>{{ a.tipo === false ? 'Recojo en tienda' : (a.tipo === true ? 'Entrega a domicilio' : '') }}</td>
+                                <td>{{a.cliente}}</td>
+                                <td>{{a.motorizado}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

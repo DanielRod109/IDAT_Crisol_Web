@@ -75,23 +75,38 @@
             <i class="fa-solid fa-motorcycle"></i><a>Motorizados</a>
           </li>
 
-          <li [ngClass]="{ 'selected': isSelected('admin/principal/productos') }"
+          <li [ngClass]="{ 'selected': isSelected('admin/principal/asignar-motorizado') }"
             (click)="selectOption('admin/principal/asignar-motorizado')"
             *ngIf="rolUsuario =='Administrador' || rolUsuario =='Ventas'">
             <i class="fa-solid fa-hand-holding"></i><a>Asignar motorizado</a>
           </li>
 
-          <li [ngClass]="{ 'selected': isSelected('admin/principal/productos') }"
+          <li [ngClass]="{ 'selected': isSelected('admin/principal/ventas-curso') }"
             (click)="selectOption('admin/principal/ventas-curso')"
             *ngIf="rolUsuario =='Administrador' || rolUsuario =='Ventas'">
             <i class="fa-solid fa-coins"></i><a>Ventas en curso</a>
           </li>
+
+          <li [ngClass]="{ 'selected': isSelected('admin/principal/reporte-ventas') }"
+            (click)="selectOption('admin/principal/reporte-ventas')"
+            *ngIf="rolUsuario =='Administrador' || rolUsuario =='Ventas'">
+            <i class="fa-solid fa-file-contract"></i><a>Reporte de ventas</a>
+          </li>
+
+          <li [ngClass]="{ 'selected': isSelected('admin/principal/reporte-detalle-ventas') }"
+            (click)="selectOption('admin/principal/reporte-detalle-ventas')"
+            *ngIf="rolUsuario =='Administrador' || rolUsuario =='Ventas'">
+            <i class="fa-solid fa-file-contract"></i><a>Detalles de Venta</a>
+          </li>
         </ul>
+
+        <!---
         <li [ngClass]="{ 'selected': isSelected('admin/principal/compras') }"
           (click)="selectOption('admin/principal/compras')"
           *ngIf="rolUsuario =='Almacén' || rolUsuario =='Administrador'">
           <i class="fa-solid fa-cart-shopping"></i><a>Compras</a>
         </li>
+        -------->
 
         <li>
           <i class="fa-solid fa-right-from-bracket"></i><a (click)="onLogout()">Cerrar Sesión</a>

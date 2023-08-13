@@ -1,0 +1,48 @@
+<div class="jumbotron text-white">
+    <h1 class="display-4">Detalles de Venta</h1>
+</div>
+<div class="container-fluid">
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-10">
+            <div class="d-flex justify-content-between mb-3">
+                <div class="col-md-5 p-0">
+                    <input type="text" class="form-control" [(ngModel)]="id" (input)="getV(id)" placeholder="Ingrese el ID de la venta" />
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button (click)="exportExcel()" class="btn btn-success mr-4"><i class="fa-solid fa-file-excel fa-lg" style="color: #ffffff;"></i></button>
+                    <button (click)="exportPdf()" class="btn btn-danger"><i class="fa-solid fa-file-pdf fa-lg" style="color: #fafafa;"></i></button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped custom-table mt-3">
+                    <thead class="bg-secondary table-light">
+                        <tr>
+                            <th>Libro</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of detalles">
+                            <td>{{a.libro}}</td>
+                            <td>S/.{{a.precio_uni}}</td>
+                            <td>{{a.cantidad}}</td>
+                            <td>S/.{{a.subtotal}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="form-group form-control-bottom-left">
+                    <label for="cliente">Cliente</label>
+                    <input type="text" class="form-control" [(ngModel)]="ventas.cliente.nombres" disabled="true" />
+                </div>
+                <div class="form-group form-control-bottom-right">
+                    <label for="total">Total</label>
+                    <input type="text" class="form-control" [(ngModel)]="ventas.total" disabled="true" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

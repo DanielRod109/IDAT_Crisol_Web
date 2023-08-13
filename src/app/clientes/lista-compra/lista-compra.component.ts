@@ -26,7 +26,6 @@ export class ListaCompraComponent {
       this.clienteId= this.clienteService.getClienteId(); 
     }
     this.getVentas();
-    console.log(this.clienteId);
   }
 
   getVentas(){
