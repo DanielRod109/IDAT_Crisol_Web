@@ -62,7 +62,7 @@ exportPdf(): void {
       rows.push(temp);
   });
 
-  doc.text('Reporte de dventa', 75, 16);
+  doc.text('Detalles de Venta', 75, 16);
   
   autoTable(doc, {head: [col], body: rows, startY: 20 }); 
 
